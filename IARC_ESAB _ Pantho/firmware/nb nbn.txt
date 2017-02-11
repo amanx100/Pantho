@@ -1,0 +1,25 @@
+else if ((sensor_data_hold == (7<<4)) || (sensor_data_hold == (15<<3)) || (sensor_data_hold == (31<<2)))	//left turn trig  //can be use else if later
+		{
+			_delay_ms(30);  //pass 0.5 cm
+			sensor_data_temp = sensor_data();
+			if (sensor_data_temp == sensor_data_hold)
+			{
+				//speed = 300;
+				set_speed_RL(speed);  // this line is mandatory do not forget it
+				while(1)
+				{
+					sensor_data_temp = sensor_data();
+					
+					if (!(sensor_data_temp & (1<<6)))
+					{
+						//update path data
+						turn_left(speed);
+						break;
+					}
+				}
+			}
+			else
+			{
+				goto start_over_while_1;
+			}
+		}

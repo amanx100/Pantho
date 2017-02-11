@@ -1,0 +1,23 @@
+ISR(INT0_vect)
+{
+	wheel_feedback_L = wheel_feedback_L + 1;
+	//sprintf(ch_buffer,"left data: %d \n\r",(uint16_t)wheel_feedback_L);
+	//usart_putstr(ch_buffer);
+}
+
+ISR(INT1_vect)
+{
+	wheel_feedback_R = wheel_feedback_R + 1;
+	//sprintf(ch_buffer,"right data: %d \n\r",(uint16_t)wheel_feedback_R);
+	//usart_putstr(ch_buffer);
+}
+
+
+//setup 
+
+	GICR |= (1<<INT0)|(1<<INT1);				// Enable INT0 and INT1
+	MCUCSR |= 0x00;
+	MCUCR = 0x00;				// Trigger INT2 settings
+	MCUCR |= (1<<ISC00)|(1<<ISC10);	//trigger int0 and int1 on any change
+	GIFR = (1<<INTF0)|(1<<INTF1);				//Interrupt flag 2 is cleared by writing a logical one into INTF
+	sei();

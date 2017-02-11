@@ -1,0 +1,12 @@
+sensor_data_temp = sensor_data();
+
+					if (sensor_data_temp == 0x00)
+					{
+						//update path data
+						break;
+					}
+					else if ((sensor_data_temp == (3<<2)) || (sensor_data_temp == (3<<3)) || (sensor_data_temp == (3<<4)))
+					{
+						//update path data
+						break;
+					}

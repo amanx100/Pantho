@@ -1,0 +1,1481 @@
+
+demo.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000058a  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .stab         0000036c  00000000  00000000  000005e0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  2 .stabstr      00000059  00000000  00000000  0000094c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_aranges 00000014  00000000  00000000  000009a5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_pubnames 0000001b  00000000  00000000  000009b9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000a2c  00000000  00000000  000009d4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000015c  00000000  00000000  00001400  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000006bf  00000000  00000000  0000155c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  0000001c  00000000  00000000  00001c1b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000127  00000000  00000000  00001c37  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000004de  00000000  00000000  00001d5e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 45 00 	jmp	0x8a	; 0x8a <__bad_interrupt>
+   8:	0c 94 45 00 	jmp	0x8a	; 0x8a <__bad_interrupt>
+   c:	0c 94 45 00 	jmp	0x8a	; 0x8a <__bad_interrupt>
+  10:	0c 94 45 00 	jmp	0x8a	; 0x8a <__bad_interrupt>
+  14:	0c 94 45 00 	jmp	0x8a	; 0x8a <__bad_interrupt>
+  18:	0c 94 45 00 	jmp	0x8a	; 0x8a <__bad_interrupt>
+  1c:	0c 94 45 00 	jmp	0x8a	; 0x8a <__bad_interrupt>
+  20:	0c 94 45 00 	jmp	0x8a	; 0x8a <__bad_interrupt>
+  24:	0c 94 45 00 	jmp	0x8a	; 0x8a <__bad_interrupt>
+  28:	0c 94 45 00 	jmp	0x8a	; 0x8a <__bad_interrupt>
+  2c:	0c 94 45 00 	jmp	0x8a	; 0x8a <__bad_interrupt>
+  30:	0c 94 45 00 	jmp	0x8a	; 0x8a <__bad_interrupt>
+  34:	0c 94 45 00 	jmp	0x8a	; 0x8a <__bad_interrupt>
+  38:	0c 94 45 00 	jmp	0x8a	; 0x8a <__bad_interrupt>
+  3c:	0c 94 45 00 	jmp	0x8a	; 0x8a <__bad_interrupt>
+  40:	0c 94 45 00 	jmp	0x8a	; 0x8a <__bad_interrupt>
+  44:	0c 94 45 00 	jmp	0x8a	; 0x8a <__bad_interrupt>
+  48:	0c 94 45 00 	jmp	0x8a	; 0x8a <__bad_interrupt>
+  4c:	0c 94 45 00 	jmp	0x8a	; 0x8a <__bad_interrupt>
+  50:	0c 94 45 00 	jmp	0x8a	; 0x8a <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ea e8       	ldi	r30, 0x8A	; 138
+  68:	f5 e0       	ldi	r31, 0x05	; 5
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
+
+0000006c <.do_copy_data_loop>:
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+
+00000070 <.do_copy_data_start>:
+  70:	a0 36       	cpi	r26, 0x60	; 96
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <.do_copy_data_loop>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	a0 e6       	ldi	r26, 0x60	; 96
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a0 36       	cpi	r26, 0x60	; 96
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0c 94 47 00 	jmp	0x8e	; 0x8e <main>
+
+0000008a <__bad_interrupt>:
+  8a:	0c 94 00 00 	jmp	0	; 0x0 <__heap_end>
+
+0000008e <main>:
+#include<avr/io.h>
+#include<util/delay.h>
+int main()
+{
+  8e:	cf 92       	push	r12
+  90:	df 92       	push	r13
+  92:	ef 92       	push	r14
+  94:	ff 92       	push	r15
+  96:	0f 93       	push	r16
+  98:	1f 93       	push	r17
+  9a:	cf 93       	push	r28
+  9c:	df 93       	push	r29
+  9e:	cd b7       	in	r28, 0x3d	; 61
+  a0:	de b7       	in	r29, 0x3e	; 62
+  a2:	64 97       	sbiw	r28, 0x14	; 20
+  a4:	0f b6       	in	r0, 0x3f	; 63
+  a6:	f8 94       	cli
+  a8:	de bf       	out	0x3e, r29	; 62
+  aa:	0f be       	out	0x3f, r0	; 63
+  ac:	cd bf       	out	0x3d, r28	; 61
+	short num = 1;				//variable to keep track of status
+	short num2 = 1;
+	short counter = 0;
+	char directions[10];
+	
+	short counter123 = 0;				//variable to keep track of elements in directions array
+	/* Direction specs:
+	 * 'l' => left
+	 * 'r' => right
+	 * 'u' => U-turn
+	 * 's' => straight
+	 * 'e' => end of maze!!
+	*/
+	unsigned char checker;		//to check if a u turn is recorded
+	
+	//motors as outputs
+	DDRD |= (1<<4)|(1<<5)|(1<<6)|(1<<7);
+  ae:	81 b3       	in	r24, 0x11	; 17
+  b0:	80 6f       	ori	r24, 0xF0	; 240
+  b2:	81 bb       	out	0x11, r24	; 17
+	
+	//beeper as output
+	DDRC |= (1<<3);
+  b4:	a3 9a       	sbi	0x14, 3	; 20
+	
+					
+	/*
+ 	* Sensor 1 connected to PA0
+ 	* Sensor 2 connected to PA1
+ 	* Sensor 3 connected to PA2
+ 	* Sensor 4 connected to PA3
+ 	* Sensor 5 connected to PA4
+ 	*/
+	
+	
+	DDRA &= (~((1<<0)|(1<<1)|(1<<2)|(1<<3)|(1<<4)));
+  b6:	8a b3       	in	r24, 0x1a	; 26
+  b8:	80 7e       	andi	r24, 0xE0	; 224
+  ba:	8a bb       	out	0x1a, r24	; 26
+	
+	//enable pullup
+	
+	PORTA |= (1<<0)|(1<<1)|(1<<2)|(1<<3)|(1<<4);
+  bc:	8b b3       	in	r24, 0x1b	; 27
+  be:	8f 61       	ori	r24, 0x1F	; 31
+  c0:	8b bb       	out	0x1b, r24	; 27
+  c2:	41 e0       	ldi	r20, 0x01	; 1
+  c4:	e4 2e       	mov	r14, r20
+  c6:	f1 2c       	mov	r15, r1
+  c8:	41 e0       	ldi	r20, 0x01	; 1
+  ca:	50 e0       	ldi	r21, 0x00	; 0
+  cc:	00 e0       	ldi	r16, 0x00	; 0
+  ce:	10 e0       	ldi	r17, 0x00	; 0
+  d0:	cc 24       	eor	r12, r12
+  d2:	dd 24       	eor	r13, r13
+  d4:	60 e6       	ldi	r22, 0x60	; 96
+  d6:	7d e6       	ldi	r23, 0x6D	; 109
+  d8:	de 01       	movw	r26, r28
+  da:	11 96       	adiw	r26, 0x01	; 1
+	
+	while(1)
+	{
+		
+		{								//block to assign status to num
+			if((PINA & (1<<0)) != 0)
+  dc:	c8 9b       	sbis	0x19, 0	; 25
+  de:	03 c0       	rjmp	.+6      	; 0xe6 <main+0x58>
+			{
+				num &= (~(1<<4));
+  e0:	c7 01       	movw	r24, r14
+  e2:	8f 7e       	andi	r24, 0xEF	; 239
+  e4:	02 c0       	rjmp	.+4      	; 0xea <main+0x5c>
+			}
+			else
+			{
+				num |= (1<<4);
+  e6:	c7 01       	movw	r24, r14
+  e8:	80 61       	ori	r24, 0x10	; 16
+			}
+
+
+			if((PINA & (1<<1)) != 0)
+  ea:	c9 9b       	sbis	0x19, 1	; 25
+  ec:	02 c0       	rjmp	.+4      	; 0xf2 <main+0x64>
+			{
+				num &= (~(1<<3));
+  ee:	87 7f       	andi	r24, 0xF7	; 247
+  f0:	01 c0       	rjmp	.+2      	; 0xf4 <main+0x66>
+			}
+			else
+			{
+				num |= (1<<3);
+  f2:	88 60       	ori	r24, 0x08	; 8
+			}
+
+			if((PINA & (1<<2)) != 0)
+  f4:	ca 9b       	sbis	0x19, 2	; 25
+  f6:	02 c0       	rjmp	.+4      	; 0xfc <main+0x6e>
+			{
+				num &= (~(1<<2));
+  f8:	8b 7f       	andi	r24, 0xFB	; 251
+  fa:	01 c0       	rjmp	.+2      	; 0xfe <main+0x70>
+			}
+			else
+			{
+				num |= (1<<2);
+  fc:	84 60       	ori	r24, 0x04	; 4
+			}
+
+			if((PINA & (1<<3)) != 0)
+  fe:	cb 9b       	sbis	0x19, 3	; 25
+ 100:	02 c0       	rjmp	.+4      	; 0x106 <main+0x78>
+			{
+				num &= (~(1<<1));
+ 102:	8d 7f       	andi	r24, 0xFD	; 253
+ 104:	01 c0       	rjmp	.+2      	; 0x108 <main+0x7a>
+			}
+			else
+			{
+				num |= (1<<1);
+ 106:	82 60       	ori	r24, 0x02	; 2
+			}
+
+			if((PINA & (1<<4)) != 0)
+ 108:	cc 9b       	sbis	0x19, 4	; 25
+ 10a:	07 c0       	rjmp	.+14     	; 0x11a <main+0x8c>
+			{
+				num &= (~(1<<0));
+ 10c:	3e ef       	ldi	r19, 0xFE	; 254
+ 10e:	e3 2e       	mov	r14, r19
+ 110:	3f ef       	ldi	r19, 0xFF	; 255
+ 112:	f3 2e       	mov	r15, r19
+ 114:	e8 22       	and	r14, r24
+ 116:	f9 22       	and	r15, r25
+ 118:	05 c0       	rjmp	.+10     	; 0x124 <main+0x96>
+			}
+			else
+			{
+				num |= (1<<0);
+ 11a:	21 e0       	ldi	r18, 0x01	; 1
+ 11c:	e2 2e       	mov	r14, r18
+ 11e:	f1 2c       	mov	r15, r1
+ 120:	e8 2a       	or	r14, r24
+ 122:	f9 2a       	or	r15, r25
+			}
+		}					//end of status assigning block
+		
+
+		{  //line following code
+			if(num == 4)
+ 124:	84 e0       	ldi	r24, 0x04	; 4
+ 126:	e8 16       	cp	r14, r24
+ 128:	f1 04       	cpc	r15, r1
+ 12a:	69 f4       	brne	.+26     	; 0x146 <main+0xb8>
+			{
+				//00100->full speed forward
+				PORTD |= (1<<5)|(1<<7);
+ 12c:	82 b3       	in	r24, 0x12	; 18
+ 12e:	80 6a       	ori	r24, 0xA0	; 160
+ 130:	82 bb       	out	0x12, r24	; 18
+				PORTD &= (~((1<<4)|(1<<6)));
+ 132:	82 b3       	in	r24, 0x12	; 18
+ 134:	8f 7a       	andi	r24, 0xAF	; 175
+ 136:	82 bb       	out	0x12, r24	; 18
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 138:	cb 01       	movw	r24, r22
+ 13a:	01 97       	sbiw	r24, 0x01	; 1
+ 13c:	f1 f7       	brne	.-4      	; 0x13a <main+0xac>
+				_delay_ms(7);
+				PORTD = 0x00;
+ 13e:	12 ba       	out	0x12, r1	; 18
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 140:	80 e2       	ldi	r24, 0x20	; 32
+ 142:	9e e4       	ldi	r25, 0x4E	; 78
+ 144:	05 c1       	rjmp	.+522    	; 0x350 <main+0x2c2>
+				_delay_ms(5);
+			}
+			else if((num == 12) || (num == 8))
+ 146:	ec e0       	ldi	r30, 0x0C	; 12
+ 148:	ee 16       	cp	r14, r30
+ 14a:	f1 04       	cpc	r15, r1
+ 14c:	21 f0       	breq	.+8      	; 0x156 <main+0xc8>
+ 14e:	f8 e0       	ldi	r31, 0x08	; 8
+ 150:	ef 16       	cp	r14, r31
+ 152:	f1 04       	cpc	r15, r1
+ 154:	49 f4       	brne	.+18     	; 0x168 <main+0xda>
+			{
+				//01100 or 01000->take a mild left
+				PORTD |= (1<<5);
+ 156:	95 9a       	sbi	0x12, 5	; 18
+				PORTD &= (~(1<<4));
+ 158:	94 98       	cbi	0x12, 4	; 18
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+ 15a:	85 e3       	ldi	r24, 0x35	; 53
+ 15c:	8a 95       	dec	r24
+ 15e:	f1 f7       	brne	.-4      	; 0x15c <main+0xce>
+				_delay_us(10);
+				PORTD = 0x00;
+ 160:	12 ba       	out	0x12, r1	; 18
+				PORTD |= (1<<7);
+ 162:	97 9a       	sbi	0x12, 7	; 18
+				PORTD &= (~(1<<6));
+ 164:	96 98       	cbi	0x12, 6	; 18
+ 166:	10 c0       	rjmp	.+32     	; 0x188 <main+0xfa>
+				_delay_us(20);
+				PORTD = 0x00;
+			}
+			else if((num == 2) || (num == 6))
+ 168:	82 e0       	ldi	r24, 0x02	; 2
+ 16a:	e8 16       	cp	r14, r24
+ 16c:	f1 04       	cpc	r15, r1
+ 16e:	21 f0       	breq	.+8      	; 0x178 <main+0xea>
+ 170:	e6 e0       	ldi	r30, 0x06	; 6
+ 172:	ee 16       	cp	r14, r30
+ 174:	f1 04       	cpc	r15, r1
+ 176:	61 f4       	brne	.+24     	; 0x190 <main+0x102>
+			{
+				//00010 or 00110->Take a mild right
+				PORTD |= (1<<7);
+ 178:	97 9a       	sbi	0x12, 7	; 18
+				PORTD &= (~(1<<6));
+ 17a:	96 98       	cbi	0x12, 6	; 18
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+ 17c:	85 e3       	ldi	r24, 0x35	; 53
+ 17e:	8a 95       	dec	r24
+ 180:	f1 f7       	brne	.-4      	; 0x17e <main+0xf0>
+				_delay_us(10);
+				PORTD = 0x00;
+ 182:	12 ba       	out	0x12, r1	; 18
+				PORTD |= (1<<5);
+ 184:	95 9a       	sbi	0x12, 5	; 18
+				PORTD &= (~(1<<4));
+ 186:	94 98       	cbi	0x12, 4	; 18
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+ 188:	8a e6       	ldi	r24, 0x6A	; 106
+ 18a:	8a 95       	dec	r24
+ 18c:	f1 f7       	brne	.-4      	; 0x18a <main+0xfc>
+				_delay_us(20);
+				PORTD = 0x00;
+ 18e:	12 ba       	out	0x12, r1	; 18
+			}
+			
+		}	//end of line following code
+		
+		{		//turns and intersection
+			if((num == 28) || (num == 24))
+ 190:	fc e1       	ldi	r31, 0x1C	; 28
+ 192:	ef 16       	cp	r14, r31
+ 194:	f1 04       	cpc	r15, r1
+ 196:	21 f0       	breq	.+8      	; 0x1a0 <main+0x112>
+ 198:	88 e1       	ldi	r24, 0x18	; 24
+ 19a:	e8 16       	cp	r14, r24
+ 19c:	f1 04       	cpc	r15, r1
+ 19e:	c9 f4       	brne	.+50     	; 0x1d2 <main+0x144>
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 1a0:	80 e0       	ldi	r24, 0x00	; 0
+ 1a2:	90 e0       	ldi	r25, 0x00	; 0
+ 1a4:	01 97       	sbiw	r24, 0x01	; 1
+ 1a6:	f1 f7       	brne	.-4      	; 0x1a4 <main+0x116>
+			{
+				//left turn
+				_delay_ms(1000);
+				//go ahead a bit
+				PORTD |= (1<<5)|(1<<7);
+ 1a8:	82 b3       	in	r24, 0x12	; 18
+ 1aa:	80 6a       	ori	r24, 0xA0	; 160
+ 1ac:	82 bb       	out	0x12, r24	; 18
+				PORTD &= (~((1<<4)|(1<<6)));
+ 1ae:	82 b3       	in	r24, 0x12	; 18
+ 1b0:	8f 7a       	andi	r24, 0xAF	; 175
+ 1b2:	82 bb       	out	0x12, r24	; 18
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 1b4:	cb 01       	movw	r24, r22
+ 1b6:	01 97       	sbiw	r24, 0x01	; 1
+ 1b8:	f1 f7       	brne	.-4      	; 0x1b6 <main+0x128>
+				_delay_ms(07);
+				PORTD = 0x00;
+ 1ba:	12 ba       	out	0x12, r1	; 18
+ 1bc:	95 e3       	ldi	r25, 0x35	; 53
+				//now take a turn till middle sensor is on black again...
+				while(1)
+				{
+					PORTD |= (1<<7);
+ 1be:	97 9a       	sbi	0x12, 7	; 18
+					PORTD &= (~(1<<6));
+ 1c0:	96 98       	cbi	0x12, 6	; 18
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+ 1c2:	89 2f       	mov	r24, r25
+ 1c4:	8a 95       	dec	r24
+ 1c6:	f1 f7       	brne	.-4      	; 0x1c4 <main+0x136>
+					_delay_us(10);
+					PORTD = 0x00;
+ 1c8:	12 ba       	out	0x12, r1	; 18
+					if((PINA & (1<<2)) == 0)
+ 1ca:	ca 99       	sbic	0x19, 2	; 25
+ 1cc:	f8 cf       	rjmp	.-16     	; 0x1be <main+0x130>
+						break;		//break out of while loop
+				}		//left turn completed!!!
+				//record this turn now....
+				directions[counter123] = 'l';
+ 1ce:	8c e6       	ldi	r24, 0x6C	; 108
+ 1d0:	49 c0       	rjmp	.+146    	; 0x264 <main+0x1d6>
+				counter123++;
+				
+			}
+			
+			//<!--------------EDIT-------------!>
+			
+			else if((num == 7) || (num == 3))
+ 1d2:	e7 e0       	ldi	r30, 0x07	; 7
+ 1d4:	ee 16       	cp	r14, r30
+ 1d6:	f1 04       	cpc	r15, r1
+ 1d8:	29 f0       	breq	.+10     	; 0x1e4 <main+0x156>
+ 1da:	f3 e0       	ldi	r31, 0x03	; 3
+ 1dc:	ef 16       	cp	r14, r31
+ 1de:	f1 04       	cpc	r15, r1
+ 1e0:	09 f0       	breq	.+2      	; 0x1e4 <main+0x156>
+ 1e2:	47 c0       	rjmp	.+142    	; 0x272 <main+0x1e4>
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 1e4:	e0 e0       	ldi	r30, 0x00	; 0
+ 1e6:	f0 e0       	ldi	r31, 0x00	; 0
+ 1e8:	cf 01       	movw	r24, r30
+ 1ea:	01 97       	sbiw	r24, 0x01	; 1
+ 1ec:	f1 f7       	brne	.-4      	; 0x1ea <main+0x15c>
+			{
+				//can be a right only turn or a straight-right intersection
+				//move forward a bit
+				_delay_ms(1000);
+				PORTD |= (1<<5)|(1<<7);
+ 1ee:	82 b3       	in	r24, 0x12	; 18
+ 1f0:	80 6a       	ori	r24, 0xA0	; 160
+ 1f2:	82 bb       	out	0x12, r24	; 18
+				PORTD &= (~((1<<4)|(1<<6)));
+ 1f4:	82 b3       	in	r24, 0x12	; 18
+ 1f6:	8f 7a       	andi	r24, 0xAF	; 175
+ 1f8:	82 bb       	out	0x12, r24	; 18
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 1fa:	cf 01       	movw	r24, r30
+ 1fc:	01 97       	sbiw	r24, 0x01	; 1
+ 1fe:	f1 f7       	brne	.-4      	; 0x1fc <main+0x16e>
+				_delay_ms(25);
+				PORTD = 0x00;
+ 200:	12 ba       	out	0x12, r1	; 18
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 202:	cf 01       	movw	r24, r30
+ 204:	01 97       	sbiw	r24, 0x01	; 1
+ 206:	f1 f7       	brne	.-4      	; 0x204 <main+0x176>
+				//scan sensors again
+				_delay_ms(1000);
+		
+				if((PINA & (1<<0)) != 0)
+ 208:	c8 9b       	sbis	0x19, 0	; 25
+ 20a:	33 c0       	rjmp	.+102    	; 0x272 <main+0x1e4>
+					if((PINA & (1<<1)) != 0)
+ 20c:	c9 9b       	sbis	0x19, 1	; 25
+ 20e:	31 c0       	rjmp	.+98     	; 0x272 <main+0x1e4>
+						if((PINA & (1<<2)) != 0)
+ 210:	ca 9b       	sbis	0x19, 2	; 25
+ 212:	2f c0       	rjmp	.+94     	; 0x272 <main+0x1e4>
+							if((PINA & (1<<3)) != 0)
+ 214:	cb 9b       	sbis	0x19, 3	; 25
+ 216:	2d c0       	rjmp	.+90     	; 0x272 <main+0x1e4>
+								if((PINA & (1<<4)) != 0)
+ 218:	cc 9b       	sbis	0x19, 4	; 25
+ 21a:	29 c0       	rjmp	.+82     	; 0x26e <main+0x1e0>
+								{
+									//was a right only turn
+									//move back for 20ms
+									PORTD |= (1<<4)|(1<<6);
+ 21c:	82 b3       	in	r24, 0x12	; 18
+ 21e:	80 65       	ori	r24, 0x50	; 80
+ 220:	82 bb       	out	0x12, r24	; 18
+									PORTD &= (~((1<<5)|(1<<7)));
+ 222:	82 b3       	in	r24, 0x12	; 18
+ 224:	8f 75       	andi	r24, 0x5F	; 95
+ 226:	82 bb       	out	0x12, r24	; 18
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 228:	cf 01       	movw	r24, r30
+ 22a:	01 97       	sbiw	r24, 0x01	; 1
+ 22c:	f1 f7       	brne	.-4      	; 0x22a <main+0x19c>
+									_delay_ms(26);
+									PORTD = 0x00;
+ 22e:	12 ba       	out	0x12, r1	; 18
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 230:	31 97       	sbiw	r30, 0x01	; 1
+ 232:	f1 f7       	brne	.-4      	; 0x230 <main+0x1a2>
+									_delay_ms(1000);
+									PORTD |= (1<<5)|(1<<6);
+ 234:	82 b3       	in	r24, 0x12	; 18
+ 236:	80 66       	ori	r24, 0x60	; 96
+ 238:	82 bb       	out	0x12, r24	; 18
+									PORTD &= (~((1<<4)|(1<<7)));
+ 23a:	82 b3       	in	r24, 0x12	; 18
+ 23c:	8f 76       	andi	r24, 0x6F	; 111
+ 23e:	82 bb       	out	0x12, r24	; 18
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 240:	cb 01       	movw	r24, r22
+ 242:	01 97       	sbiw	r24, 0x01	; 1
+ 244:	f1 f7       	brne	.-4      	; 0x242 <main+0x1b4>
+									_delay_ms(7);
+									PORTD = 0x00;
+ 246:	12 ba       	out	0x12, r1	; 18
+ 248:	95 e3       	ldi	r25, 0x35	; 53
+							
+									//now take a right
+							
+										while(1)
+										{
+											PORTD |= (1<<5);
+ 24a:	95 9a       	sbi	0x12, 5	; 18
+											PORTD &= (~(1<<4));
+ 24c:	94 98       	cbi	0x12, 4	; 18
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+ 24e:	89 2f       	mov	r24, r25
+ 250:	8a 95       	dec	r24
+ 252:	f1 f7       	brne	.-4      	; 0x250 <main+0x1c2>
+											_delay_us(10);
+											PORTD = 0x00;
+ 254:	12 ba       	out	0x12, r1	; 18
+											
+											if((PINA & (1<<2)) == 0)
+ 256:	ca 99       	sbic	0x19, 2	; 25
+ 258:	f8 cf       	rjmp	.-16     	; 0x24a <main+0x1bc>
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 25a:	80 e4       	ldi	r24, 0x40	; 64
+ 25c:	9f e1       	ldi	r25, 0x1F	; 31
+ 25e:	01 97       	sbiw	r24, 0x01	; 1
+ 260:	f1 f7       	brne	.-4      	; 0x25e <main+0x1d0>
+											{
+												_delay_ms(2);
+												break;		//break out of while loop
+											}
+										}
+										directions[counter123] = 'r';
+ 262:	82 e7       	ldi	r24, 0x72	; 114
+ 264:	8d 93       	st	X+, r24
+										counter123++;
+ 266:	08 94       	sec
+ 268:	c1 1c       	adc	r12, r1
+ 26a:	d1 1c       	adc	r13, r1
+ 26c:	02 c0       	rjmp	.+4      	; 0x272 <main+0x1e4>
+										
+
+								}
+		
+				else
+				{
+					//was a straight only road...
+					directions[counter123] = 's';
+ 26e:	83 e7       	ldi	r24, 0x73	; 115
+ 270:	57 c0       	rjmp	.+174    	; 0x320 <main+0x292>
+					counter123++;
+					continue;
+				}
+		
+			}			//end of right turn else if
+			
+			
+			//<!------------EDIT::END-----------!>
+			
+			
+			
+		}		//turns and intersection end
+	
+		{		//T-intersection,+ intersection and END
+			//$$$$$$$$$$$$$$$$$$$$$$$$$-----EDIT-------$$$$$$$$$$$$$$$$$$$//
+			
+			if(num == 0)
+ 272:	e1 14       	cp	r14, r1
+ 274:	f1 04       	cpc	r15, r1
+ 276:	09 f0       	breq	.+2      	; 0x27a <main+0x1ec>
+ 278:	58 c0       	rjmp	.+176    	; 0x32a <main+0x29c>
+			{
+				//11111->intersection of the above types
+				//move forward by a small amount
+
+				PORTD |= (1<<5)|(1<<7);
+ 27a:	82 b3       	in	r24, 0x12	; 18
+ 27c:	80 6a       	ori	r24, 0xA0	; 160
+ 27e:	82 bb       	out	0x12, r24	; 18
+				PORTD &= (~((1<<4)|(1<<6)));
+ 280:	82 b3       	in	r24, 0x12	; 18
+ 282:	8f 7a       	andi	r24, 0xAF	; 175
+ 284:	82 bb       	out	0x12, r24	; 18
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 286:	c7 01       	movw	r24, r14
+ 288:	01 97       	sbiw	r24, 0x01	; 1
+ 28a:	f1 f7       	brne	.-4      	; 0x288 <main+0x1fa>
+				_delay_ms(25);
+
+				//re-scan sensors
+
+
+					{								//block to assign status to num
+						if((PINA & (1<<0)) != 0)
+ 28c:	c8 9b       	sbis	0x19, 0	; 25
+ 28e:	03 c0       	rjmp	.+6      	; 0x296 <main+0x208>
+						{
+							num2 &= (~(1<<4));
+ 290:	ca 01       	movw	r24, r20
+ 292:	8f 7e       	andi	r24, 0xEF	; 239
+ 294:	02 c0       	rjmp	.+4      	; 0x29a <main+0x20c>
+						}
+						else
+						{
+							num2 |= (1<<4);
+ 296:	ca 01       	movw	r24, r20
+ 298:	80 61       	ori	r24, 0x10	; 16
+						}
+
+
+						if((PINA & (1<<1)) != 0)
+ 29a:	c9 9b       	sbis	0x19, 1	; 25
+ 29c:	02 c0       	rjmp	.+4      	; 0x2a2 <main+0x214>
+						{
+							num2 &= (~(1<<3));
+ 29e:	87 7f       	andi	r24, 0xF7	; 247
+ 2a0:	01 c0       	rjmp	.+2      	; 0x2a4 <main+0x216>
+						}
+						else
+						{
+							num2 |= (1<<3);
+ 2a2:	88 60       	ori	r24, 0x08	; 8
+						}
+
+						if((PINA & (1<<2)) != 0)
+ 2a4:	ca 9b       	sbis	0x19, 2	; 25
+ 2a6:	02 c0       	rjmp	.+4      	; 0x2ac <main+0x21e>
+						{
+							num2 &= (~(1<<2));
+ 2a8:	8b 7f       	andi	r24, 0xFB	; 251
+ 2aa:	01 c0       	rjmp	.+2      	; 0x2ae <main+0x220>
+						}
+						else
+						{
+							num2 |= (1<<2);
+ 2ac:	84 60       	ori	r24, 0x04	; 4
+						}
+
+						if((PINA & (1<<3)) != 0)
+ 2ae:	cb 9b       	sbis	0x19, 3	; 25
+ 2b0:	02 c0       	rjmp	.+4      	; 0x2b6 <main+0x228>
+						{
+							num2 &= (~(1<<1));
+ 2b2:	8d 7f       	andi	r24, 0xFD	; 253
+ 2b4:	01 c0       	rjmp	.+2      	; 0x2b8 <main+0x22a>
+						}
+						else
+						{
+							num2 |= (1<<1);
+ 2b6:	82 60       	ori	r24, 0x02	; 2
+						}
+
+						if((PINA & (1<<4)) != 0)
+ 2b8:	cc 9b       	sbis	0x19, 4	; 25
+ 2ba:	06 c0       	rjmp	.+12     	; 0x2c8 <main+0x23a>
+						{
+							num2 &= (~(1<<0));
+ 2bc:	ac 01       	movw	r20, r24
+ 2be:	4e 7f       	andi	r20, 0xFE	; 254
+						}
+						else
+						{
+							num2 |= (1<<0);
+						}
+					}					//end of status assigning block
+
+					if(num2 == 0)
+ 2c0:	41 15       	cp	r20, r1
+ 2c2:	51 05       	cpc	r21, r1
+ 2c4:	89 f4       	brne	.+34     	; 0x2e8 <main+0x25a>
+ 2c6:	03 c0       	rjmp	.+6      	; 0x2ce <main+0x240>
+ 2c8:	ac 01       	movw	r20, r24
+ 2ca:	41 60       	ori	r20, 0x01	; 1
+ 2cc:	0d c0       	rjmp	.+26     	; 0x2e8 <main+0x25a>
+					{
+						//11111->stop....end of maze
+
+						PORTD = 0x00;
+ 2ce:	12 ba       	out	0x12, r1	; 18
+						PORTC |= (1<<3);			//buzzer on
+ 2d0:	ab 9a       	sbi	0x15, 3	; 21
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 2d2:	ca 01       	movw	r24, r20
+ 2d4:	01 97       	sbiw	r24, 0x01	; 1
+ 2d6:	f1 f7       	brne	.-4      	; 0x2d4 <main+0x246>
+						_delay_ms(2000);
+						PORTC &= (~(1<<3));			//buzzer off
+ 2d8:	ab 98       	cbi	0x15, 3	; 21
+						
+						directions[counter123] = 'e';
+ 2da:	85 e6       	ldi	r24, 0x65	; 101
+ 2dc:	8c 93       	st	X, r24
+ 2de:	40 e0       	ldi	r20, 0x00	; 0
+ 2e0:	50 e0       	ldi	r21, 0x00	; 0
+ 2e2:	60 e0       	ldi	r22, 0x00	; 0
+ 2e4:	70 e0       	ldi	r23, 0x00	; 0
+ 2e6:	6d c0       	rjmp	.+218    	; 0x3c2 <main+0x334>
+						counter123++;
+						
+						break;
+					}		//end of "Maze-end" block
+					else
+					{
+						//take a left as it is a default...
+						PORTD |= (1<<4)|(1<<6);
+ 2e8:	82 b3       	in	r24, 0x12	; 18
+ 2ea:	80 65       	ori	r24, 0x50	; 80
+ 2ec:	82 bb       	out	0x12, r24	; 18
+						PORTD &= (~((1<<5)|(1<<7)));
+ 2ee:	82 b3       	in	r24, 0x12	; 18
+ 2f0:	8f 75       	andi	r24, 0x5F	; 95
+ 2f2:	82 bb       	out	0x12, r24	; 18
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 2f4:	80 e0       	ldi	r24, 0x00	; 0
+ 2f6:	90 e0       	ldi	r25, 0x00	; 0
+ 2f8:	01 97       	sbiw	r24, 0x01	; 1
+ 2fa:	f1 f7       	brne	.-4      	; 0x2f8 <main+0x26a>
+						_delay_ms(18);
+						PORTD = 0x00;
+ 2fc:	12 ba       	out	0x12, r1	; 18
+ 2fe:	e0 ea       	ldi	r30, 0xA0	; 160
+ 300:	ff e0       	ldi	r31, 0x0F	; 15
+ 302:	25 e3       	ldi	r18, 0x35	; 53
+
+						while(1)
+						{
+							PORTD |= (1<<7);
+ 304:	97 9a       	sbi	0x12, 7	; 18
+							PORTD &= (~((1<<4)|(1<<5)|(1<<6)));
+ 306:	82 b3       	in	r24, 0x12	; 18
+ 308:	8f 78       	andi	r24, 0x8F	; 143
+ 30a:	82 bb       	out	0x12, r24	; 18
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 30c:	cf 01       	movw	r24, r30
+ 30e:	01 97       	sbiw	r24, 0x01	; 1
+ 310:	f1 f7       	brne	.-4      	; 0x30e <main+0x280>
+							_delay_ms(1);
+							PORTD = 0x00;
+ 312:	12 ba       	out	0x12, r1	; 18
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+ 314:	82 2f       	mov	r24, r18
+ 316:	8a 95       	dec	r24
+ 318:	f1 f7       	brne	.-4      	; 0x316 <main+0x288>
+							_delay_us(10);
+
+							if((PINA & (1<<2))==0)
+ 31a:	ca 99       	sbic	0x19, 2	; 25
+ 31c:	f3 cf       	rjmp	.-26     	; 0x304 <main+0x276>
+							{
+								break;		//break out of while loop
+							}
+						}
+						directions[counter123] = 'l';
+ 31e:	8c e6       	ldi	r24, 0x6C	; 108
+ 320:	8d 93       	st	X+, r24
+						counter123++;
+ 322:	08 94       	sec
+ 324:	c1 1c       	adc	r12, r1
+ 326:	d1 1c       	adc	r13, r1
+ 328:	d9 ce       	rjmp	.-590    	; 0xdc <main+0x4e>
+
+						//left turn complete
+						
+					}		//end of else
+
+			}
+			
+			//$$$$$$$$$$$$$$$$$$$$$$$$$-----EDIT-------$$$$$$$$$$$$$$$$$$$//
+		}
+	
+		{		//condition for U-Turns
+			//edit here
+			
+			if(num == 31)
+ 32a:	8f e1       	ldi	r24, 0x1F	; 31
+ 32c:	e8 16       	cp	r14, r24
+ 32e:	f1 04       	cpc	r15, r1
+ 330:	09 f0       	breq	.+2      	; 0x334 <main+0x2a6>
+ 332:	d4 ce       	rjmp	.-600    	; 0xdc <main+0x4e>
+			{
+				counter = counter + 1;
+ 334:	0f 5f       	subi	r16, 0xFF	; 255
+ 336:	1f 4f       	sbci	r17, 0xFF	; 255
+				if((counter == 1)||(counter == 2))
+ 338:	c8 01       	movw	r24, r16
+ 33a:	01 97       	sbiw	r24, 0x01	; 1
+ 33c:	02 97       	sbiw	r24, 0x02	; 2
+ 33e:	58 f4       	brcc	.+22     	; 0x356 <main+0x2c8>
+				{
+					PORTD |= (1<<5)|(1<<7);
+ 340:	82 b3       	in	r24, 0x12	; 18
+ 342:	80 6a       	ori	r24, 0xA0	; 160
+ 344:	82 bb       	out	0x12, r24	; 18
+					PORTD &= (~((1<<4)|(1<<6)));
+ 346:	82 b3       	in	r24, 0x12	; 18
+ 348:	8f 7a       	andi	r24, 0xAF	; 175
+ 34a:	82 bb       	out	0x12, r24	; 18
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 34c:	80 ea       	ldi	r24, 0xA0	; 160
+ 34e:	9f e0       	ldi	r25, 0x0F	; 15
+ 350:	01 97       	sbiw	r24, 0x01	; 1
+ 352:	f1 f7       	brne	.-4      	; 0x350 <main+0x2c2>
+ 354:	c3 ce       	rjmp	.-634    	; 0xdc <main+0x4e>
+					_delay_ms(1);
+					continue;
+				}
+				directions[counter123] = 'u';
+ 356:	85 e7       	ldi	r24, 0x75	; 117
+ 358:	8c 93       	st	X, r24
+				counter++;
+ 35a:	0f 5f       	subi	r16, 0xFF	; 255
+ 35c:	1f 4f       	sbci	r17, 0xFF	; 255
+ 35e:	be ce       	rjmp	.-644    	; 0xdc <main+0x4e>
+				
+				
+			}
+			
+		}
+	}
+	
+	
+	//now array copying....
+	char path[10];
+	{
+		short len = counter123-1;
+		short m = 0;			//loop tracking variable
+		short n = 0;			//assigning variable
+		for(;m<=len;m++)
+		{
+			if(directions[m] != 'u')
+ 360:	8e 01       	movw	r16, r28
+ 362:	0f 5f       	subi	r16, 0xFF	; 255
+ 364:	1f 4f       	sbci	r17, 0xFF	; 255
+ 366:	f8 01       	movw	r30, r16
+ 368:	e4 0f       	add	r30, r20
+ 36a:	f5 1f       	adc	r31, r21
+ 36c:	e0 81       	ld	r30, Z
+ 36e:	de 01       	movw	r26, r28
+ 370:	1b 96       	adiw	r26, 0x0b	; 11
+ 372:	e5 37       	cpi	r30, 0x75	; 117
+ 374:	31 f0       	breq	.+12     	; 0x382 <main+0x2f4>
+			{
+				//simply copy over
+				path[n] = directions[m];
+ 376:	a6 0f       	add	r26, r22
+ 378:	b7 1f       	adc	r27, r23
+ 37a:	ec 93       	st	X, r30
+				n++;
+ 37c:	6f 5f       	subi	r22, 0xFF	; 255
+ 37e:	7f 4f       	sbci	r23, 0xFF	; 255
+ 380:	1e c0       	rjmp	.+60     	; 0x3be <main+0x330>
+			}
+			
+			else
+			{
+				//check for possiblities  lul = s,lus = r,sul = r
+				if(path[n-1] == 's')
+ 382:	61 50       	subi	r22, 0x01	; 1
+ 384:	70 40       	sbci	r23, 0x00	; 0
+ 386:	a6 0f       	add	r26, r22
+ 388:	b7 1f       	adc	r27, r23
+ 38a:	6f 5f       	subi	r22, 0xFF	; 255
+ 38c:	7f 4f       	sbci	r23, 0xFF	; 255
+ 38e:	8c 91       	ld	r24, X
+ 390:	83 37       	cpi	r24, 0x73	; 115
+ 392:	19 f4       	brne	.+6      	; 0x39a <main+0x30c>
+				{
+					//replace by r straight off
+					path[n-1] = 'r';
+ 394:	82 e7       	ldi	r24, 0x72	; 114
+ 396:	8c 93       	st	X, r24
+ 398:	12 c0       	rjmp	.+36     	; 0x3be <main+0x330>
+					//don't change n
+				}
+				else if(path[n-1] == 'l')
+ 39a:	8c 36       	cpi	r24, 0x6C	; 108
+ 39c:	81 f4       	brne	.+32     	; 0x3be <main+0x330>
+				{
+					if(directions[m+1] == 'l')
+ 39e:	9a 01       	movw	r18, r20
+ 3a0:	2f 5f       	subi	r18, 0xFF	; 255
+ 3a2:	3f 4f       	sbci	r19, 0xFF	; 255
+ 3a4:	02 0f       	add	r16, r18
+ 3a6:	13 1f       	adc	r17, r19
+ 3a8:	f8 01       	movw	r30, r16
+ 3aa:	80 81       	ld	r24, Z
+ 3ac:	8c 36       	cpi	r24, 0x6C	; 108
+ 3ae:	11 f4       	brne	.+4      	; 0x3b4 <main+0x326>
+					{
+						m = m + 1;
+						path[n-1] = 's';
+ 3b0:	83 e7       	ldi	r24, 0x73	; 115
+ 3b2:	03 c0       	rjmp	.+6      	; 0x3ba <main+0x32c>
+					}
+					else if(directions[m+1] == 's')
+ 3b4:	83 37       	cpi	r24, 0x73	; 115
+ 3b6:	19 f4       	brne	.+6      	; 0x3be <main+0x330>
+					{
+						m = m + 1;
+						path[n-1] = 'r';
+ 3b8:	82 e7       	ldi	r24, 0x72	; 114
+ 3ba:	8c 93       	st	X, r24
+ 3bc:	a9 01       	movw	r20, r18
+ 3be:	4f 5f       	subi	r20, 0xFF	; 255
+ 3c0:	5f 4f       	sbci	r21, 0xFF	; 255
+ 3c2:	c4 16       	cp	r12, r20
+ 3c4:	d5 06       	cpc	r13, r21
+ 3c6:	64 f6       	brge	.-104    	; 0x360 <main+0x2d2>
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 3c8:	80 e0       	ldi	r24, 0x00	; 0
+ 3ca:	90 e0       	ldi	r25, 0x00	; 0
+ 3cc:	01 97       	sbiw	r24, 0x01	; 1
+ 3ce:	f1 f7       	brne	.-4      	; 0x3cc <main+0x33e>
+ 3d0:	20 e0       	ldi	r18, 0x00	; 0
+ 3d2:	30 e0       	ldi	r19, 0x00	; 0
+ 3d4:	a0 e6       	ldi	r26, 0x60	; 96
+ 3d6:	bd e6       	ldi	r27, 0x6D	; 109
+ 3d8:	75 e3       	ldi	r23, 0x35	; 53
+ 3da:	6a e6       	ldi	r22, 0x6A	; 106
+ 3dc:	40 e0       	ldi	r20, 0x00	; 0
+ 3de:	50 e0       	ldi	r21, 0x00	; 0
+					}
+				}
+			}
+		}
+	}	//array copying done!!!!!!!!!
+	
+	//we'll wait for 20 seconds
+	_delay_ms(20000);
+	
+	//and now move along the necessary path.......
+	short loopy = 0;
+	while(1)
+	{
+			{								//block to assign status to num
+				if((PINA & (1<<0)) != 0)
+ 3e0:	c8 9b       	sbis	0x19, 0	; 25
+ 3e2:	03 c0       	rjmp	.+6      	; 0x3ea <main+0x35c>
+				{
+					num &= (~(1<<4));
+ 3e4:	c7 01       	movw	r24, r14
+ 3e6:	8f 7e       	andi	r24, 0xEF	; 239
+ 3e8:	02 c0       	rjmp	.+4      	; 0x3ee <main+0x360>
+				}
+				else
+				{
+					num |= (1<<4);
+ 3ea:	c7 01       	movw	r24, r14
+ 3ec:	80 61       	ori	r24, 0x10	; 16
+				}
+
+
+				if((PINA & (1<<1)) != 0)
+ 3ee:	c9 9b       	sbis	0x19, 1	; 25
+ 3f0:	02 c0       	rjmp	.+4      	; 0x3f6 <main+0x368>
+				{
+					num &= (~(1<<3));
+ 3f2:	87 7f       	andi	r24, 0xF7	; 247
+ 3f4:	01 c0       	rjmp	.+2      	; 0x3f8 <main+0x36a>
+				}
+				else
+				{
+					num |= (1<<3);
+ 3f6:	88 60       	ori	r24, 0x08	; 8
+				}
+
+				if((PINA & (1<<2)) != 0)
+ 3f8:	ca 9b       	sbis	0x19, 2	; 25
+ 3fa:	02 c0       	rjmp	.+4      	; 0x400 <main+0x372>
+				{
+					num &= (~(1<<2));
+ 3fc:	8b 7f       	andi	r24, 0xFB	; 251
+ 3fe:	01 c0       	rjmp	.+2      	; 0x402 <main+0x374>
+				}
+				else
+				{
+					num |= (1<<2);
+ 400:	84 60       	ori	r24, 0x04	; 4
+				}
+
+				if((PINA & (1<<3)) != 0)
+ 402:	cb 9b       	sbis	0x19, 3	; 25
+ 404:	02 c0       	rjmp	.+4      	; 0x40a <main+0x37c>
+				{
+					num &= (~(1<<1));
+ 406:	8d 7f       	andi	r24, 0xFD	; 253
+ 408:	01 c0       	rjmp	.+2      	; 0x40c <main+0x37e>
+				}
+				else
+				{
+					num |= (1<<1);
+ 40a:	82 60       	ori	r24, 0x02	; 2
+				}
+
+				if((PINA & (1<<4)) != 0)
+ 40c:	cc 9b       	sbis	0x19, 4	; 25
+ 40e:	07 c0       	rjmp	.+14     	; 0x41e <main+0x390>
+				{
+					num &= (~(1<<0));
+ 410:	fe ef       	ldi	r31, 0xFE	; 254
+ 412:	ef 2e       	mov	r14, r31
+ 414:	ff ef       	ldi	r31, 0xFF	; 255
+ 416:	ff 2e       	mov	r15, r31
+ 418:	e8 22       	and	r14, r24
+ 41a:	f9 22       	and	r15, r25
+ 41c:	05 c0       	rjmp	.+10     	; 0x428 <main+0x39a>
+				}
+				else
+				{
+					num |= (1<<0);
+ 41e:	e1 e0       	ldi	r30, 0x01	; 1
+ 420:	ee 2e       	mov	r14, r30
+ 422:	f1 2c       	mov	r15, r1
+ 424:	e8 2a       	or	r14, r24
+ 426:	f9 2a       	or	r15, r25
+				}
+			}					//end of status assigning block
+
+
+			{  //line following code
+				if(num == 4)
+ 428:	f4 e0       	ldi	r31, 0x04	; 4
+ 42a:	ef 16       	cp	r14, r31
+ 42c:	f1 04       	cpc	r15, r1
+ 42e:	79 f4       	brne	.+30     	; 0x44e <main+0x3c0>
+				{
+					//00100->full speed forward
+					PORTD |= (1<<5)|(1<<7);
+ 430:	82 b3       	in	r24, 0x12	; 18
+ 432:	80 6a       	ori	r24, 0xA0	; 160
+ 434:	82 bb       	out	0x12, r24	; 18
+					PORTD &= (~((1<<4)|(1<<6)));
+ 436:	82 b3       	in	r24, 0x12	; 18
+ 438:	8f 7a       	andi	r24, 0xAF	; 175
+ 43a:	82 bb       	out	0x12, r24	; 18
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 43c:	cd 01       	movw	r24, r26
+ 43e:	01 97       	sbiw	r24, 0x01	; 1
+ 440:	f1 f7       	brne	.-4      	; 0x43e <main+0x3b0>
+					_delay_ms(7);
+					PORTD = 0x00;
+ 442:	12 ba       	out	0x12, r1	; 18
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 444:	80 e2       	ldi	r24, 0x20	; 32
+ 446:	9e e4       	ldi	r25, 0x4E	; 78
+ 448:	01 97       	sbiw	r24, 0x01	; 1
+ 44a:	f1 f7       	brne	.-4      	; 0x448 <main+0x3ba>
+ 44c:	c9 cf       	rjmp	.-110    	; 0x3e0 <main+0x352>
+					_delay_ms(5);
+				}
+				else if((num == 12) || (num == 8))
+ 44e:	8c e0       	ldi	r24, 0x0C	; 12
+ 450:	e8 16       	cp	r14, r24
+ 452:	f1 04       	cpc	r15, r1
+ 454:	21 f0       	breq	.+8      	; 0x45e <main+0x3d0>
+ 456:	e8 e0       	ldi	r30, 0x08	; 8
+ 458:	ee 16       	cp	r14, r30
+ 45a:	f1 04       	cpc	r15, r1
+ 45c:	49 f4       	brne	.+18     	; 0x470 <__stack+0x11>
+				{
+					//01100 or 01000->take a mild left
+					PORTD |= (1<<5);
+ 45e:	95 9a       	sbi	0x12, 5	; 18
+					PORTD &= (~(1<<4));
+ 460:	94 98       	cbi	0x12, 4	; 18
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+ 462:	87 2f       	mov	r24, r23
+ 464:	8a 95       	dec	r24
+ 466:	f1 f7       	brne	.-4      	; 0x464 <__stack+0x5>
+					_delay_us(10);
+					PORTD = 0x00;
+ 468:	12 ba       	out	0x12, r1	; 18
+					PORTD |= (1<<7);
+ 46a:	97 9a       	sbi	0x12, 7	; 18
+					PORTD &= (~(1<<6));
+ 46c:	96 98       	cbi	0x12, 6	; 18
+ 46e:	10 c0       	rjmp	.+32     	; 0x490 <__stack+0x31>
+					_delay_us(20);
+					PORTD = 0x00;
+				}
+				else if((num == 2) || (num == 6))
+ 470:	f2 e0       	ldi	r31, 0x02	; 2
+ 472:	ef 16       	cp	r14, r31
+ 474:	f1 04       	cpc	r15, r1
+ 476:	21 f0       	breq	.+8      	; 0x480 <__stack+0x21>
+ 478:	86 e0       	ldi	r24, 0x06	; 6
+ 47a:	e8 16       	cp	r14, r24
+ 47c:	f1 04       	cpc	r15, r1
+ 47e:	61 f4       	brne	.+24     	; 0x498 <__stack+0x39>
+				{
+					//00010 or 00110->Take a mild right
+					PORTD |= (1<<7);
+ 480:	97 9a       	sbi	0x12, 7	; 18
+					PORTD &= (~(1<<6));
+ 482:	96 98       	cbi	0x12, 6	; 18
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+ 484:	87 2f       	mov	r24, r23
+ 486:	8a 95       	dec	r24
+ 488:	f1 f7       	brne	.-4      	; 0x486 <__stack+0x27>
+					_delay_us(10);
+					PORTD = 0x00;
+ 48a:	12 ba       	out	0x12, r1	; 18
+					PORTD |= (1<<5);
+ 48c:	95 9a       	sbi	0x12, 5	; 18
+					PORTD &= (~(1<<4));
+ 48e:	94 98       	cbi	0x12, 4	; 18
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+ 490:	86 2f       	mov	r24, r22
+ 492:	8a 95       	dec	r24
+ 494:	f1 f7       	brne	.-4      	; 0x492 <__stack+0x33>
+					_delay_us(20);
+					PORTD = 0x00;
+ 496:	12 ba       	out	0x12, r1	; 18
+				}
+
+			}	//end of line following code
+		
+			//now turns and intersections
+			if(num == 28 || num == 24 || num ==  7 || num == 3 || num == 0 || num == 31)
+ 498:	ec e1       	ldi	r30, 0x1C	; 28
+ 49a:	ee 16       	cp	r14, r30
+ 49c:	f1 04       	cpc	r15, r1
+ 49e:	a1 f0       	breq	.+40     	; 0x4c8 <__stack+0x69>
+ 4a0:	f8 e1       	ldi	r31, 0x18	; 24
+ 4a2:	ef 16       	cp	r14, r31
+ 4a4:	f1 04       	cpc	r15, r1
+ 4a6:	81 f0       	breq	.+32     	; 0x4c8 <__stack+0x69>
+ 4a8:	87 e0       	ldi	r24, 0x07	; 7
+ 4aa:	e8 16       	cp	r14, r24
+ 4ac:	f1 04       	cpc	r15, r1
+ 4ae:	61 f0       	breq	.+24     	; 0x4c8 <__stack+0x69>
+ 4b0:	e3 e0       	ldi	r30, 0x03	; 3
+ 4b2:	ee 16       	cp	r14, r30
+ 4b4:	f1 04       	cpc	r15, r1
+ 4b6:	41 f0       	breq	.+16     	; 0x4c8 <__stack+0x69>
+ 4b8:	e1 14       	cp	r14, r1
+ 4ba:	f1 04       	cpc	r15, r1
+ 4bc:	29 f0       	breq	.+10     	; 0x4c8 <__stack+0x69>
+ 4be:	ff e1       	ldi	r31, 0x1F	; 31
+ 4c0:	ef 16       	cp	r14, r31
+ 4c2:	f1 04       	cpc	r15, r1
+ 4c4:	09 f0       	breq	.+2      	; 0x4c8 <__stack+0x69>
+ 4c6:	8c cf       	rjmp	.-232    	; 0x3e0 <main+0x352>
+			{
+				PORTD = 0x00;
+ 4c8:	12 ba       	out	0x12, r1	; 18
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 4ca:	80 e4       	ldi	r24, 0x40	; 64
+ 4cc:	9c e9       	ldi	r25, 0x9C	; 156
+ 4ce:	01 97       	sbiw	r24, 0x01	; 1
+ 4d0:	f1 f7       	brne	.-4      	; 0x4ce <__stack+0x6f>
+				_delay_ms(10);
+				//follow path array
+				if(path[loopy] == 'l')
+ 4d2:	fe 01       	movw	r30, r28
+ 4d4:	e2 0f       	add	r30, r18
+ 4d6:	f3 1f       	adc	r31, r19
+ 4d8:	83 85       	ldd	r24, Z+11	; 0x0b
+ 4da:	8c 36       	cpi	r24, 0x6C	; 108
+ 4dc:	b9 f4       	brne	.+46     	; 0x50c <__stack+0xad>
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 4de:	ca 01       	movw	r24, r20
+ 4e0:	01 97       	sbiw	r24, 0x01	; 1
+ 4e2:	f1 f7       	brne	.-4      	; 0x4e0 <__stack+0x81>
+				{
+					//Take left here
+					
+					
+					_delay_ms(1000);
+					//go ahead a bit
+					PORTD |= (1<<5)|(1<<7);
+ 4e4:	82 b3       	in	r24, 0x12	; 18
+ 4e6:	80 6a       	ori	r24, 0xA0	; 160
+ 4e8:	82 bb       	out	0x12, r24	; 18
+					PORTD &= (~((1<<4)|(1<<6)));
+ 4ea:	82 b3       	in	r24, 0x12	; 18
+ 4ec:	8f 7a       	andi	r24, 0xAF	; 175
+ 4ee:	82 bb       	out	0x12, r24	; 18
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 4f0:	cd 01       	movw	r24, r26
+ 4f2:	01 97       	sbiw	r24, 0x01	; 1
+ 4f4:	f1 f7       	brne	.-4      	; 0x4f2 <__stack+0x93>
+					_delay_ms(07);
+					PORTD = 0x00;
+ 4f6:	12 ba       	out	0x12, r1	; 18
+ 4f8:	95 e3       	ldi	r25, 0x35	; 53
+					//now take a turn till middle sensor is on black again...
+					while(1)
+					{
+						PORTD |= (1<<7);
+ 4fa:	97 9a       	sbi	0x12, 7	; 18
+						PORTD &= (~(1<<6));
+ 4fc:	96 98       	cbi	0x12, 6	; 18
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+ 4fe:	89 2f       	mov	r24, r25
+ 500:	8a 95       	dec	r24
+ 502:	f1 f7       	brne	.-4      	; 0x500 <__stack+0xa1>
+						_delay_us(10);
+						PORTD = 0x00;
+ 504:	12 ba       	out	0x12, r1	; 18
+						if((PINA & (1<<2)) == 0)
+ 506:	ca 99       	sbic	0x19, 2	; 25
+ 508:	f8 cf       	rjmp	.-16     	; 0x4fa <__stack+0x9b>
+ 50a:	19 c0       	rjmp	.+50     	; 0x53e <__stack+0xdf>
+							break;		//break out of while loop
+					}		//left turn completed!!!
+					
+					loopy++;
+				}
+				else if(path[loopy] == 'r')
+ 50c:	82 37       	cpi	r24, 0x72	; 114
+ 50e:	d1 f4       	brne	.+52     	; 0x544 <__stack+0xe5>
+				{
+					//take right here
+					PORTD |= (1<<5)|(1<<7);
+ 510:	82 b3       	in	r24, 0x12	; 18
+ 512:	80 6a       	ori	r24, 0xA0	; 160
+ 514:	82 bb       	out	0x12, r24	; 18
+					PORTD &= (~((1<<4)|(1<<6)));
+ 516:	82 b3       	in	r24, 0x12	; 18
+ 518:	8f 7a       	andi	r24, 0xAF	; 175
+ 51a:	82 bb       	out	0x12, r24	; 18
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 51c:	cd 01       	movw	r24, r26
+ 51e:	01 97       	sbiw	r24, 0x01	; 1
+ 520:	f1 f7       	brne	.-4      	; 0x51e <__stack+0xbf>
+					_delay_ms(07);
+					PORTD = 0x00;
+ 522:	12 ba       	out	0x12, r1	; 18
+ 524:	95 e3       	ldi	r25, 0x35	; 53
+					while(1)
+					{
+						PORTD |= (1<<5);
+ 526:	95 9a       	sbi	0x12, 5	; 18
+						PORTD &= (~(1<<4));
+ 528:	94 98       	cbi	0x12, 4	; 18
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+ 52a:	89 2f       	mov	r24, r25
+ 52c:	8a 95       	dec	r24
+ 52e:	f1 f7       	brne	.-4      	; 0x52c <__stack+0xcd>
+						_delay_us(10);
+						PORTD = 0x00;
+ 530:	12 ba       	out	0x12, r1	; 18
+						
+						if((PINA & (1<<2)) == 0)
+ 532:	ca 99       	sbic	0x19, 2	; 25
+ 534:	f8 cf       	rjmp	.-16     	; 0x526 <__stack+0xc7>
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 536:	80 e4       	ldi	r24, 0x40	; 64
+ 538:	9f e1       	ldi	r25, 0x1F	; 31
+ 53a:	01 97       	sbiw	r24, 0x01	; 1
+ 53c:	f1 f7       	brne	.-4      	; 0x53a <__stack+0xdb>
+						{
+							_delay_ms(2);
+							break;		//break out of while loop
+						}
+					}
+					
+					
+					loopy++;
+ 53e:	2f 5f       	subi	r18, 0xFF	; 255
+ 540:	3f 4f       	sbci	r19, 0xFF	; 255
+ 542:	4e cf       	rjmp	.-356    	; 0x3e0 <main+0x352>
+				}
+				else if(path[loopy] == 's')
+ 544:	83 37       	cpi	r24, 0x73	; 115
+ 546:	59 f4       	brne	.+22     	; 0x55e <__stack+0xff>
+				{
+					//go straight
+					PORTD |= (1<<5)|(1<<7);
+ 548:	82 b3       	in	r24, 0x12	; 18
+ 54a:	80 6a       	ori	r24, 0xA0	; 160
+ 54c:	82 bb       	out	0x12, r24	; 18
+					PORTD &= (~((1<<4)|(1<<6)));
+ 54e:	82 b3       	in	r24, 0x12	; 18
+ 550:	8f 7a       	andi	r24, 0xAF	; 175
+ 552:	82 bb       	out	0x12, r24	; 18
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 554:	ca 01       	movw	r24, r20
+ 556:	01 97       	sbiw	r24, 0x01	; 1
+ 558:	f1 f7       	brne	.-4      	; 0x556 <__stack+0xf7>
+					_delay_ms(30);
+					PORTD = 0x00;
+ 55a:	12 ba       	out	0x12, r1	; 18
+ 55c:	f0 cf       	rjmp	.-32     	; 0x53e <__stack+0xdf>
+					loopy++;
+				}
+				else if(loopy == 'e')
+ 55e:	25 36       	cpi	r18, 0x65	; 101
+ 560:	31 05       	cpc	r19, r1
+ 562:	09 f0       	breq	.+2      	; 0x566 <__stack+0x107>
+ 564:	3d cf       	rjmp	.-390    	; 0x3e0 <main+0x352>
+				{
+					//stop
+					PORTD = 0x00;
+ 566:	12 ba       	out	0x12, r1	; 18
+					loopy++;
+					break;
+				}
+				
+			}
+
+	}
+} 568:	80 e0       	ldi	r24, 0x00	; 0
+ 56a:	90 e0       	ldi	r25, 0x00	; 0
+ 56c:	64 96       	adiw	r28, 0x14	; 20
+ 56e:	0f b6       	in	r0, 0x3f	; 63
+ 570:	f8 94       	cli
+ 572:	de bf       	out	0x3e, r29	; 62
+ 574:	0f be       	out	0x3f, r0	; 63
+ 576:	cd bf       	out	0x3d, r28	; 61
+ 578:	df 91       	pop	r29
+ 57a:	cf 91       	pop	r28
+ 57c:	1f 91       	pop	r17
+ 57e:	0f 91       	pop	r16
+ 580:	ff 90       	pop	r15
+ 582:	ef 90       	pop	r14
+ 584:	df 90       	pop	r13
+ 586:	cf 90       	pop	r12
+ 588:	08 95       	ret

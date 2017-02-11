@@ -1,0 +1,2548 @@
+
+firmware.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000a78  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000006  00800060  00000a78  00000b0c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          000000ce  00800066  00800066  00000b12  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000b12  2**0
+                  CONTENTS, READONLY
+  4 .debug_aranges 000000d0  00000000  00000000  00000b42  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   0000188d  00000000  00000000  00000c12  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000256  00000000  00000000  0000249f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000694  00000000  00000000  000026f5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000001d4  00000000  00000000  00002d8c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000377  00000000  00000000  00002f60  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000018cc  00000000  00000000  000032d7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000120  00000000  00000000  00004ba3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e8 e7       	ldi	r30, 0x78	; 120
+  68:	fa e0       	ldi	r31, 0x0A	; 10
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a6 36       	cpi	r26, 0x66	; 102
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	21 e0       	ldi	r18, 0x01	; 1
+  78:	a6 e6       	ldi	r26, 0x66	; 102
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a4 33       	cpi	r26, 0x34	; 52
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 8d 02 	call	0x51a	; 0x51a <main>
+  8a:	0c 94 3a 05 	jmp	0xa74	; 0xa74 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <go_forward>:
+#ifndef M_DIR_H_
+#define M_DIR_H_
+
+void go_forward(void)
+{
+	PORTB = 0x05;
+  92:	85 e0       	ldi	r24, 0x05	; 5
+  94:	88 bb       	out	0x18, r24	; 24
+	TCCR1B |= (1<<1);
+  96:	8e b5       	in	r24, 0x2e	; 46
+  98:	82 60       	ori	r24, 0x02	; 2
+  9a:	8e bd       	out	0x2e, r24	; 46
+  9c:	08 95       	ret
+
+0000009e <go_backward>:
+}
+
+void go_backward(void)
+{
+	PORTB = 0x0A;
+  9e:	8a e0       	ldi	r24, 0x0A	; 10
+  a0:	88 bb       	out	0x18, r24	; 24
+	TCCR1B |= (1<<1);
+  a2:	8e b5       	in	r24, 0x2e	; 46
+  a4:	82 60       	ori	r24, 0x02	; 2
+  a6:	8e bd       	out	0x2e, r24	; 46
+  a8:	08 95       	ret
+
+000000aa <right_rotate>:
+}
+
+void right_rotate(void)
+{
+	PORTB = 0x09;
+  aa:	89 e0       	ldi	r24, 0x09	; 9
+  ac:	88 bb       	out	0x18, r24	; 24
+	TCCR1B |= (1<<1);
+  ae:	8e b5       	in	r24, 0x2e	; 46
+  b0:	82 60       	ori	r24, 0x02	; 2
+  b2:	8e bd       	out	0x2e, r24	; 46
+  b4:	08 95       	ret
+
+000000b6 <left_rotate>:
+}
+
+void left_rotate(void)
+{
+	PORTB = 0x06;
+  b6:	86 e0       	ldi	r24, 0x06	; 6
+  b8:	88 bb       	out	0x18, r24	; 24
+	TCCR1B |= (1<<1);
+  ba:	8e b5       	in	r24, 0x2e	; 46
+  bc:	82 60       	ori	r24, 0x02	; 2
+  be:	8e bd       	out	0x2e, r24	; 46
+  c0:	08 95       	ret
+
+000000c2 <stay_stop>:
+}
+
+void stay_stop(void)
+{
+	PORTB = 0x00;
+  c2:	18 ba       	out	0x18, r1	; 24
+	TCCR1B &= ~(1<<1);
+  c4:	8e b5       	in	r24, 0x2e	; 46
+  c6:	8d 7f       	andi	r24, 0xFD	; 253
+  c8:	8e bd       	out	0x2e, r24	; 46
+  ca:	08 95       	ret
+
+000000cc <sensor_data>:
+}
+
+uint8_t sensor_data(void)
+{
+sn_dt:
+	if ((PIND & (1<<PD2)) && (PIND & (1<<PD3)))
+  cc:	82 9b       	sbis	0x10, 2	; 16
+  ce:	fe cf       	rjmp	.-4      	; 0xcc <sensor_data>
+  d0:	83 9b       	sbis	0x10, 3	; 16
+  d2:	fc cf       	rjmp	.-8      	; 0xcc <sensor_data>
+	{
+		return PINC;
+  d4:	83 b3       	in	r24, 0x13	; 19
+	}
+	else goto sn_dt;
+}
+  d6:	08 95       	ret
+
+000000d8 <turn_U>:
+
+void turn_U(uint16_t speed)
+{
+  d8:	0f 93       	push	r16
+  da:	1f 93       	push	r17
+  dc:	cf 93       	push	r28
+  de:	df 93       	push	r29
+  e0:	ec 01       	movw	r28, r24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  e2:	2f ef       	ldi	r18, 0xFF	; 255
+  e4:	81 ee       	ldi	r24, 0xE1	; 225
+  e6:	94 e0       	ldi	r25, 0x04	; 4
+  e8:	21 50       	subi	r18, 0x01	; 1
+  ea:	80 40       	sbci	r24, 0x00	; 0
+  ec:	90 40       	sbci	r25, 0x00	; 0
+  ee:	e1 f7       	brne	.-8      	; 0xe8 <turn_U+0x10>
+  f0:	00 c0       	rjmp	.+0      	; 0xf2 <turn_U+0x1a>
+  f2:	00 00       	nop
+	_delay_ms(200);
+	left_rotate();
+  f4:	0e 94 5b 00 	call	0xb6	; 0xb6 <left_rotate>
+	set_speed_L(speed + 300); //70
+  f8:	8e 01       	movw	r16, r28
+  fa:	04 5d       	subi	r16, 0xD4	; 212
+  fc:	1e 4f       	sbci	r17, 0xFE	; 254
+	OCR1B = speed_R;
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+  fe:	1b bd       	out	0x2b, r17	; 43
+ 100:	0a bd       	out	0x2a, r16	; 42
+ 102:	2f e7       	ldi	r18, 0x7F	; 127
+ 104:	88 e3       	ldi	r24, 0x38	; 56
+ 106:	91 e0       	ldi	r25, 0x01	; 1
+ 108:	21 50       	subi	r18, 0x01	; 1
+ 10a:	80 40       	sbci	r24, 0x00	; 0
+ 10c:	90 40       	sbci	r25, 0x00	; 0
+ 10e:	e1 f7       	brne	.-8      	; 0x108 <turn_U+0x30>
+ 110:	00 c0       	rjmp	.+0      	; 0x112 <turn_U+0x3a>
+ 112:	00 00       	nop
+{
+	_delay_ms(200);
+	left_rotate();
+	set_speed_L(speed + 300); //70
+	_delay_ms(50);
+	set_speed_R(speed-50); //-50
+ 114:	ce 01       	movw	r24, r28
+ 116:	c2 97       	sbiw	r24, 0x32	; 50
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 118:	99 bd       	out	0x29, r25	; 41
+ 11a:	88 bd       	out	0x28, r24	; 40
+	_delay_ms(200);
+	left_rotate();
+	set_speed_L(speed + 300); //70
+	_delay_ms(50);
+	set_speed_R(speed-50); //-50
+	set_speed_L(speed+30);
+ 11c:	80 5b       	subi	r24, 0xB0	; 176
+ 11e:	9f 4f       	sbci	r25, 0xFF	; 255
+	OCR1B = speed_R;
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 120:	9b bd       	out	0x2b, r25	; 43
+ 122:	8a bd       	out	0x2a, r24	; 42
+	set_speed_L(speed + 300); //70
+	_delay_ms(50);
+	set_speed_R(speed-50); //-50
+	set_speed_L(speed+30);
+	//_delay_ms(100);
+	while((sensor_data() & (3<<5)) != (3<<5));
+ 124:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+ 128:	80 76       	andi	r24, 0x60	; 96
+ 12a:	80 36       	cpi	r24, 0x60	; 96
+ 12c:	d9 f7       	brne	.-10     	; 0x124 <turn_U+0x4c>
+	while((sensor_data() & (3<<4)) != (3<<4));
+ 12e:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+ 132:	80 73       	andi	r24, 0x30	; 48
+ 134:	80 33       	cpi	r24, 0x30	; 48
+ 136:	d9 f7       	brne	.-10     	; 0x12e <turn_U+0x56>
+	while((sensor_data() & (3<<3)) != (3<<3));
+ 138:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+ 13c:	88 71       	andi	r24, 0x18	; 24
+ 13e:	88 31       	cpi	r24, 0x18	; 24
+ 140:	d9 f7       	brne	.-10     	; 0x138 <turn_U+0x60>
+	//while(sensor_data() != (3<<3));
+	go_forward();
+ 142:	0e 94 49 00 	call	0x92	; 0x92 <go_forward>
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 146:	d9 bd       	out	0x29, r29	; 41
+ 148:	c8 bd       	out	0x28, r28	; 40
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 14a:	1b bd       	out	0x2b, r17	; 43
+ 14c:	0a bd       	out	0x2a, r16	; 42
+ 14e:	2f e7       	ldi	r18, 0x7F	; 127
+ 150:	88 e3       	ldi	r24, 0x38	; 56
+ 152:	91 e0       	ldi	r25, 0x01	; 1
+ 154:	21 50       	subi	r18, 0x01	; 1
+ 156:	80 40       	sbci	r24, 0x00	; 0
+ 158:	90 40       	sbci	r25, 0x00	; 0
+ 15a:	e1 f7       	brne	.-8      	; 0x154 <turn_U+0x7c>
+ 15c:	00 c0       	rjmp	.+0      	; 0x15e <turn_U+0x86>
+ 15e:	00 00       	nop
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 160:	d9 bd       	out	0x29, r29	; 41
+ 162:	c8 bd       	out	0x28, r28	; 40
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 164:	db bd       	out	0x2b, r29	; 43
+ 166:	ca bd       	out	0x2a, r28	; 42
+	go_forward();
+	set_speed_R(speed);
+	set_speed_L(speed +300);
+	_delay_ms(50);
+	set_speed_RL(speed);
+}
+ 168:	df 91       	pop	r29
+ 16a:	cf 91       	pop	r28
+ 16c:	1f 91       	pop	r17
+ 16e:	0f 91       	pop	r16
+ 170:	08 95       	ret
+
+00000172 <turn_U_destination>:
+
+void turn_U_destination(uint16_t speed)
+{
+ 172:	0f 93       	push	r16
+ 174:	1f 93       	push	r17
+ 176:	cf 93       	push	r28
+ 178:	df 93       	push	r29
+ 17a:	ec 01       	movw	r28, r24
+	uint16_t sensor_data_hold;
+	stay_stop();
+ 17c:	0e 94 61 00 	call	0xc2	; 0xc2 <stay_stop>
+ 180:	2f ef       	ldi	r18, 0xFF	; 255
+ 182:	89 e6       	ldi	r24, 0x69	; 105
+ 184:	98 e1       	ldi	r25, 0x18	; 24
+ 186:	21 50       	subi	r18, 0x01	; 1
+ 188:	80 40       	sbci	r24, 0x00	; 0
+ 18a:	90 40       	sbci	r25, 0x00	; 0
+ 18c:	e1 f7       	brne	.-8      	; 0x186 <turn_U_destination+0x14>
+ 18e:	00 c0       	rjmp	.+0      	; 0x190 <turn_U_destination+0x1e>
+ 190:	00 00       	nop
+	_delay_ms(1000);
+	go_backward();
+ 192:	0e 94 4f 00 	call	0x9e	; 0x9e <go_backward>
+	sensor_data_hold = sensor_data();
+ 196:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+ 19a:	82 74       	andi	r24, 0x42	; 66
+	while((sensor_data_hold & (1<<6)) || (sensor_data_hold & (1<<1)))
+ 19c:	21 f0       	breq	.+8      	; 0x1a6 <turn_U_destination+0x34>
+	{
+		sensor_data_hold = sensor_data();
+ 19e:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+ 1a2:	82 74       	andi	r24, 0x42	; 66
+	uint16_t sensor_data_hold;
+	stay_stop();
+	_delay_ms(1000);
+	go_backward();
+	sensor_data_hold = sensor_data();
+	while((sensor_data_hold & (1<<6)) || (sensor_data_hold & (1<<1)))
+ 1a4:	e1 f7       	brne	.-8      	; 0x19e <turn_U_destination+0x2c>
+	{
+		sensor_data_hold = sensor_data();
+	}
+	stay_stop();
+ 1a6:	0e 94 61 00 	call	0xc2	; 0xc2 <stay_stop>
+ 1aa:	2f ef       	ldi	r18, 0xFF	; 255
+ 1ac:	80 e7       	ldi	r24, 0x70	; 112
+ 1ae:	92 e0       	ldi	r25, 0x02	; 2
+ 1b0:	21 50       	subi	r18, 0x01	; 1
+ 1b2:	80 40       	sbci	r24, 0x00	; 0
+ 1b4:	90 40       	sbci	r25, 0x00	; 0
+ 1b6:	e1 f7       	brne	.-8      	; 0x1b0 <turn_U_destination+0x3e>
+ 1b8:	00 c0       	rjmp	.+0      	; 0x1ba <turn_U_destination+0x48>
+ 1ba:	00 00       	nop
+	_delay_ms(100);
+	go_forward();
+ 1bc:	0e 94 49 00 	call	0x92	; 0x92 <go_forward>
+	set_speed_RL(speed+20);
+ 1c0:	ce 01       	movw	r24, r28
+ 1c2:	44 96       	adiw	r24, 0x14	; 20
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 1c4:	99 bd       	out	0x29, r25	; 41
+ 1c6:	88 bd       	out	0x28, r24	; 40
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 1c8:	9b bd       	out	0x2b, r25	; 43
+ 1ca:	8a bd       	out	0x2a, r24	; 42
+ 1cc:	2f ef       	ldi	r18, 0xFF	; 255
+ 1ce:	83 ec       	ldi	r24, 0xC3	; 195
+ 1d0:	99 e0       	ldi	r25, 0x09	; 9
+ 1d2:	21 50       	subi	r18, 0x01	; 1
+ 1d4:	80 40       	sbci	r24, 0x00	; 0
+ 1d6:	90 40       	sbci	r25, 0x00	; 0
+ 1d8:	e1 f7       	brne	.-8      	; 0x1d2 <turn_U_destination+0x60>
+ 1da:	00 c0       	rjmp	.+0      	; 0x1dc <turn_U_destination+0x6a>
+ 1dc:	00 00       	nop
+	stay_stop();
+	_delay_ms(100);
+	go_forward();
+	set_speed_RL(speed+20);
+	_delay_ms(400);
+	left_rotate();
+ 1de:	0e 94 5b 00 	call	0xb6	; 0xb6 <left_rotate>
+	set_speed_L(speed + 300); //70
+ 1e2:	8e 01       	movw	r16, r28
+ 1e4:	04 5d       	subi	r16, 0xD4	; 212
+ 1e6:	1e 4f       	sbci	r17, 0xFE	; 254
+	OCR1B = speed_R;
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 1e8:	1b bd       	out	0x2b, r17	; 43
+ 1ea:	0a bd       	out	0x2a, r16	; 42
+ 1ec:	2f e7       	ldi	r18, 0x7F	; 127
+ 1ee:	88 e3       	ldi	r24, 0x38	; 56
+ 1f0:	91 e0       	ldi	r25, 0x01	; 1
+ 1f2:	21 50       	subi	r18, 0x01	; 1
+ 1f4:	80 40       	sbci	r24, 0x00	; 0
+ 1f6:	90 40       	sbci	r25, 0x00	; 0
+ 1f8:	e1 f7       	brne	.-8      	; 0x1f2 <turn_U_destination+0x80>
+ 1fa:	00 c0       	rjmp	.+0      	; 0x1fc <turn_U_destination+0x8a>
+ 1fc:	00 00       	nop
+	set_speed_RL(speed+20);
+	_delay_ms(400);
+	left_rotate();
+	set_speed_L(speed + 300); //70
+	_delay_ms(50);
+	set_speed_R(speed-50); //-50
+ 1fe:	ce 01       	movw	r24, r28
+ 200:	c2 97       	sbiw	r24, 0x32	; 50
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 202:	99 bd       	out	0x29, r25	; 41
+ 204:	88 bd       	out	0x28, r24	; 40
+	_delay_ms(400);
+	left_rotate();
+	set_speed_L(speed + 300); //70
+	_delay_ms(50);
+	set_speed_R(speed-50); //-50
+	set_speed_L(speed+30);
+ 206:	80 5b       	subi	r24, 0xB0	; 176
+ 208:	9f 4f       	sbci	r25, 0xFF	; 255
+	OCR1B = speed_R;
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 20a:	9b bd       	out	0x2b, r25	; 43
+ 20c:	8a bd       	out	0x2a, r24	; 42
+ 20e:	2f ef       	ldi	r18, 0xFF	; 255
+ 210:	80 e7       	ldi	r24, 0x70	; 112
+ 212:	92 e0       	ldi	r25, 0x02	; 2
+ 214:	21 50       	subi	r18, 0x01	; 1
+ 216:	80 40       	sbci	r24, 0x00	; 0
+ 218:	90 40       	sbci	r25, 0x00	; 0
+ 21a:	e1 f7       	brne	.-8      	; 0x214 <turn_U_destination+0xa2>
+ 21c:	00 c0       	rjmp	.+0      	; 0x21e <turn_U_destination+0xac>
+ 21e:	00 00       	nop
+	set_speed_L(speed + 300); //70
+	_delay_ms(50);
+	set_speed_R(speed-50); //-50
+	set_speed_L(speed+30);
+	_delay_ms(100);
+	while((sensor_data() & (3<<5)) != 0x00);
+ 220:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+ 224:	80 76       	andi	r24, 0x60	; 96
+ 226:	e1 f7       	brne	.-8      	; 0x220 <turn_U_destination+0xae>
+	while((sensor_data() & (3<<5)) != (3<<5));
+ 228:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+ 22c:	80 76       	andi	r24, 0x60	; 96
+ 22e:	80 36       	cpi	r24, 0x60	; 96
+ 230:	d9 f7       	brne	.-10     	; 0x228 <turn_U_destination+0xb6>
+	while((sensor_data() & (3<<4)) != (3<<4));
+ 232:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+ 236:	80 73       	andi	r24, 0x30	; 48
+ 238:	80 33       	cpi	r24, 0x30	; 48
+ 23a:	d9 f7       	brne	.-10     	; 0x232 <turn_U_destination+0xc0>
+	while((sensor_data() & (3<<3)) != (3<<3));
+ 23c:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+ 240:	88 71       	andi	r24, 0x18	; 24
+ 242:	88 31       	cpi	r24, 0x18	; 24
+ 244:	d9 f7       	brne	.-10     	; 0x23c <turn_U_destination+0xca>
+	//while(sensor_data() != (3<<3));
+	go_forward();
+ 246:	0e 94 49 00 	call	0x92	; 0x92 <go_forward>
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 24a:	d9 bd       	out	0x29, r29	; 41
+ 24c:	c8 bd       	out	0x28, r28	; 40
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 24e:	1b bd       	out	0x2b, r17	; 43
+ 250:	0a bd       	out	0x2a, r16	; 42
+ 252:	2f e7       	ldi	r18, 0x7F	; 127
+ 254:	88 e3       	ldi	r24, 0x38	; 56
+ 256:	91 e0       	ldi	r25, 0x01	; 1
+ 258:	21 50       	subi	r18, 0x01	; 1
+ 25a:	80 40       	sbci	r24, 0x00	; 0
+ 25c:	90 40       	sbci	r25, 0x00	; 0
+ 25e:	e1 f7       	brne	.-8      	; 0x258 <turn_U_destination+0xe6>
+ 260:	00 c0       	rjmp	.+0      	; 0x262 <turn_U_destination+0xf0>
+ 262:	00 00       	nop
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 264:	d9 bd       	out	0x29, r29	; 41
+ 266:	c8 bd       	out	0x28, r28	; 40
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 268:	db bd       	out	0x2b, r29	; 43
+ 26a:	ca bd       	out	0x2a, r28	; 42
+	go_forward();
+	set_speed_R(speed);
+	set_speed_L(speed +300);
+	_delay_ms(50);
+	set_speed_RL(speed);
+}
+ 26c:	df 91       	pop	r29
+ 26e:	cf 91       	pop	r28
+ 270:	1f 91       	pop	r17
+ 272:	0f 91       	pop	r16
+ 274:	08 95       	ret
+
+00000276 <turn_left>:
+
+void turn_left(uint16_t speed)
+{
+ 276:	0f 93       	push	r16
+ 278:	1f 93       	push	r17
+ 27a:	cf 93       	push	r28
+ 27c:	df 93       	push	r29
+ 27e:	ec 01       	movw	r28, r24
+	left_rotate();
+ 280:	0e 94 5b 00 	call	0xb6	; 0xb6 <left_rotate>
+	set_speed_L(speed + 300); //70
+ 284:	8e 01       	movw	r16, r28
+ 286:	04 5d       	subi	r16, 0xD4	; 212
+ 288:	1e 4f       	sbci	r17, 0xFE	; 254
+	OCR1B = speed_R;
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 28a:	1b bd       	out	0x2b, r17	; 43
+ 28c:	0a bd       	out	0x2a, r16	; 42
+ 28e:	2f e7       	ldi	r18, 0x7F	; 127
+ 290:	88 e3       	ldi	r24, 0x38	; 56
+ 292:	91 e0       	ldi	r25, 0x01	; 1
+ 294:	21 50       	subi	r18, 0x01	; 1
+ 296:	80 40       	sbci	r24, 0x00	; 0
+ 298:	90 40       	sbci	r25, 0x00	; 0
+ 29a:	e1 f7       	brne	.-8      	; 0x294 <turn_left+0x1e>
+ 29c:	00 c0       	rjmp	.+0      	; 0x29e <turn_left+0x28>
+ 29e:	00 00       	nop
+void turn_left(uint16_t speed)
+{
+	left_rotate();
+	set_speed_L(speed + 300); //70
+	_delay_ms(50);
+	set_speed_R(speed-50); //-50
+ 2a0:	ce 01       	movw	r24, r28
+ 2a2:	c2 97       	sbiw	r24, 0x32	; 50
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 2a4:	99 bd       	out	0x29, r25	; 41
+ 2a6:	88 bd       	out	0x28, r24	; 40
+{
+	left_rotate();
+	set_speed_L(speed + 300); //70
+	_delay_ms(50);
+	set_speed_R(speed-50); //-50
+	set_speed_L(speed+30);
+ 2a8:	80 5b       	subi	r24, 0xB0	; 176
+ 2aa:	9f 4f       	sbci	r25, 0xFF	; 255
+	OCR1B = speed_R;
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 2ac:	9b bd       	out	0x2b, r25	; 43
+ 2ae:	8a bd       	out	0x2a, r24	; 42
+	set_speed_L(speed + 300); //70
+	_delay_ms(50);
+	set_speed_R(speed-50); //-50
+	set_speed_L(speed+30);
+	//_delay_ms(100);
+	while((sensor_data() & (3<<5)) != (3<<5));
+ 2b0:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+ 2b4:	80 76       	andi	r24, 0x60	; 96
+ 2b6:	80 36       	cpi	r24, 0x60	; 96
+ 2b8:	d9 f7       	brne	.-10     	; 0x2b0 <turn_left+0x3a>
+	while((sensor_data() & (3<<4)) != (3<<4));
+ 2ba:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+ 2be:	80 73       	andi	r24, 0x30	; 48
+ 2c0:	80 33       	cpi	r24, 0x30	; 48
+ 2c2:	d9 f7       	brne	.-10     	; 0x2ba <turn_left+0x44>
+	//while((sensor_data() & (3<<3)) != (3<<3));
+	//while(sensor_data() != (3<<3));
+	go_forward();
+ 2c4:	0e 94 49 00 	call	0x92	; 0x92 <go_forward>
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 2c8:	d9 bd       	out	0x29, r29	; 41
+ 2ca:	c8 bd       	out	0x28, r28	; 40
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 2cc:	1b bd       	out	0x2b, r17	; 43
+ 2ce:	0a bd       	out	0x2a, r16	; 42
+ 2d0:	2f e7       	ldi	r18, 0x7F	; 127
+ 2d2:	88 e3       	ldi	r24, 0x38	; 56
+ 2d4:	91 e0       	ldi	r25, 0x01	; 1
+ 2d6:	21 50       	subi	r18, 0x01	; 1
+ 2d8:	80 40       	sbci	r24, 0x00	; 0
+ 2da:	90 40       	sbci	r25, 0x00	; 0
+ 2dc:	e1 f7       	brne	.-8      	; 0x2d6 <turn_left+0x60>
+ 2de:	00 c0       	rjmp	.+0      	; 0x2e0 <turn_left+0x6a>
+ 2e0:	00 00       	nop
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 2e2:	d9 bd       	out	0x29, r29	; 41
+ 2e4:	c8 bd       	out	0x28, r28	; 40
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 2e6:	db bd       	out	0x2b, r29	; 43
+ 2e8:	ca bd       	out	0x2a, r28	; 42
+	go_forward();
+	set_speed_R(speed);
+	set_speed_L(speed +300);
+	_delay_ms(50);
+	set_speed_RL(speed);
+}
+ 2ea:	df 91       	pop	r29
+ 2ec:	cf 91       	pop	r28
+ 2ee:	1f 91       	pop	r17
+ 2f0:	0f 91       	pop	r16
+ 2f2:	08 95       	ret
+
+000002f4 <turn_right>:
+
+void turn_right(uint16_t speed)
+{
+ 2f4:	0f 93       	push	r16
+ 2f6:	1f 93       	push	r17
+ 2f8:	cf 93       	push	r28
+ 2fa:	df 93       	push	r29
+ 2fc:	ec 01       	movw	r28, r24
+	right_rotate();
+ 2fe:	0e 94 55 00 	call	0xaa	; 0xaa <right_rotate>
+	set_speed_R(speed + 300); //40
+ 302:	8e 01       	movw	r16, r28
+ 304:	04 5d       	subi	r16, 0xD4	; 212
+ 306:	1e 4f       	sbci	r17, 0xFE	; 254
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 308:	19 bd       	out	0x29, r17	; 41
+ 30a:	08 bd       	out	0x28, r16	; 40
+ 30c:	2f e7       	ldi	r18, 0x7F	; 127
+ 30e:	88 e3       	ldi	r24, 0x38	; 56
+ 310:	91 e0       	ldi	r25, 0x01	; 1
+ 312:	21 50       	subi	r18, 0x01	; 1
+ 314:	80 40       	sbci	r24, 0x00	; 0
+ 316:	90 40       	sbci	r25, 0x00	; 0
+ 318:	e1 f7       	brne	.-8      	; 0x312 <turn_right+0x1e>
+ 31a:	00 c0       	rjmp	.+0      	; 0x31c <turn_right+0x28>
+ 31c:	00 00       	nop
+void turn_right(uint16_t speed)
+{
+	right_rotate();
+	set_speed_R(speed + 300); //40
+	_delay_ms(50);
+	set_speed_L(speed-50); //-50
+ 31e:	ce 01       	movw	r24, r28
+ 320:	c2 97       	sbiw	r24, 0x32	; 50
+	OCR1B = speed_R;
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 322:	9b bd       	out	0x2b, r25	; 43
+ 324:	8a bd       	out	0x2a, r24	; 42
+{
+	right_rotate();
+	set_speed_R(speed + 300); //40
+	_delay_ms(50);
+	set_speed_L(speed-50); //-50
+	set_speed_R(speed+30);
+ 326:	80 5b       	subi	r24, 0xB0	; 176
+ 328:	9f 4f       	sbci	r25, 0xFF	; 255
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 32a:	99 bd       	out	0x29, r25	; 41
+ 32c:	88 bd       	out	0x28, r24	; 40
+	set_speed_R(speed + 300); //40
+	_delay_ms(50);
+	set_speed_L(speed-50); //-50
+	set_speed_R(speed+30);
+	//_delay_ms(100);
+	while((sensor_data() & (3<<1)) != (3<<1));
+ 32e:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+ 332:	86 70       	andi	r24, 0x06	; 6
+ 334:	86 30       	cpi	r24, 0x06	; 6
+ 336:	d9 f7       	brne	.-10     	; 0x32e <turn_right+0x3a>
+	while((sensor_data() & (3<<2)) != (3<<2));
+ 338:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+ 33c:	8c 70       	andi	r24, 0x0C	; 12
+ 33e:	8c 30       	cpi	r24, 0x0C	; 12
+ 340:	d9 f7       	brne	.-10     	; 0x338 <turn_right+0x44>
+	//while((sensor_data() & (3<<3)) != (3<<3));
+	//while(sensor_data() != (3<<3));
+	go_forward();
+ 342:	0e 94 49 00 	call	0x92	; 0x92 <go_forward>
+	OCR1B = speed_R;
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 346:	db bd       	out	0x2b, r29	; 43
+ 348:	ca bd       	out	0x2a, r28	; 42
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 34a:	19 bd       	out	0x29, r17	; 41
+ 34c:	08 bd       	out	0x28, r16	; 40
+ 34e:	2f e7       	ldi	r18, 0x7F	; 127
+ 350:	88 e3       	ldi	r24, 0x38	; 56
+ 352:	91 e0       	ldi	r25, 0x01	; 1
+ 354:	21 50       	subi	r18, 0x01	; 1
+ 356:	80 40       	sbci	r24, 0x00	; 0
+ 358:	90 40       	sbci	r25, 0x00	; 0
+ 35a:	e1 f7       	brne	.-8      	; 0x354 <turn_right+0x60>
+ 35c:	00 c0       	rjmp	.+0      	; 0x35e <turn_right+0x6a>
+ 35e:	00 00       	nop
+ 360:	d9 bd       	out	0x29, r29	; 41
+ 362:	c8 bd       	out	0x28, r28	; 40
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 364:	db bd       	out	0x2b, r29	; 43
+ 366:	ca bd       	out	0x2a, r28	; 42
+	go_forward();
+	set_speed_L(speed);
+	set_speed_R(speed + 300);
+	_delay_ms(50);
+	set_speed_RL(speed);
+}
+ 368:	df 91       	pop	r29
+ 36a:	cf 91       	pop	r28
+ 36c:	1f 91       	pop	r17
+ 36e:	0f 91       	pop	r16
+ 370:	08 95       	ret
+
+00000372 <left_operation>:
+
+void left_operation(uint16_t speed)
+{
+	turn_left(speed);
+ 372:	0e 94 3b 01 	call	0x276	; 0x276 <turn_left>
+	directions_entry[node_number] = 'l';
+ 376:	80 91 64 00 	lds	r24, 0x0064
+ 37a:	90 91 65 00 	lds	r25, 0x0065
+ 37e:	fc 01       	movw	r30, r24
+ 380:	e4 59       	subi	r30, 0x94	; 148
+ 382:	ff 4f       	sbci	r31, 0xFF	; 255
+ 384:	2c e6       	ldi	r18, 0x6C	; 108
+ 386:	20 83       	st	Z, r18
+	node_number = node_number + 1;
+ 388:	01 96       	adiw	r24, 0x01	; 1
+ 38a:	90 93 65 00 	sts	0x0065, r25
+ 38e:	80 93 64 00 	sts	0x0064, r24
+ 392:	08 95       	ret
+
+00000394 <right_operation>:
+}
+
+void right_operation(uint16_t speed)
+{
+	turn_right(speed);
+ 394:	0e 94 7a 01 	call	0x2f4	; 0x2f4 <turn_right>
+	directions_entry[node_number] = 'r';
+ 398:	80 91 64 00 	lds	r24, 0x0064
+ 39c:	90 91 65 00 	lds	r25, 0x0065
+ 3a0:	fc 01       	movw	r30, r24
+ 3a2:	e4 59       	subi	r30, 0x94	; 148
+ 3a4:	ff 4f       	sbci	r31, 0xFF	; 255
+ 3a6:	22 e7       	ldi	r18, 0x72	; 114
+ 3a8:	20 83       	st	Z, r18
+	node_number = node_number + 1;
+ 3aa:	01 96       	adiw	r24, 0x01	; 1
+ 3ac:	90 93 65 00 	sts	0x0065, r25
+ 3b0:	80 93 64 00 	sts	0x0064, r24
+ 3b4:	08 95       	ret
+
+000003b6 <left_forward_operation>:
+}
+
+void left_forward_operation(uint16_t speed)
+{
+	turn_left(speed);
+ 3b6:	0e 94 3b 01 	call	0x276	; 0x276 <turn_left>
+	directions_entry[node_number] = 'l';
+ 3ba:	80 91 64 00 	lds	r24, 0x0064
+ 3be:	90 91 65 00 	lds	r25, 0x0065
+ 3c2:	fc 01       	movw	r30, r24
+ 3c4:	e4 59       	subi	r30, 0x94	; 148
+ 3c6:	ff 4f       	sbci	r31, 0xFF	; 255
+ 3c8:	2c e6       	ldi	r18, 0x6C	; 108
+ 3ca:	20 83       	st	Z, r18
+	node_number = node_number + 1;
+ 3cc:	01 96       	adiw	r24, 0x01	; 1
+ 3ce:	90 93 65 00 	sts	0x0065, r25
+ 3d2:	80 93 64 00 	sts	0x0064, r24
+ 3d6:	08 95       	ret
+
+000003d8 <right_forward_operation>:
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 3d8:	99 bd       	out	0x29, r25	; 41
+ 3da:	88 bd       	out	0x28, r24	; 40
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 3dc:	9b bd       	out	0x2b, r25	; 43
+ 3de:	8a bd       	out	0x2a, r24	; 42
+}
+
+void right_forward_operation(uint16_t speed)
+{
+	set_speed_RL(speed);
+	go_forward();
+ 3e0:	0e 94 49 00 	call	0x92	; 0x92 <go_forward>
+	directions_entry[node_number] = 's';
+ 3e4:	80 91 64 00 	lds	r24, 0x0064
+ 3e8:	90 91 65 00 	lds	r25, 0x0065
+ 3ec:	fc 01       	movw	r30, r24
+ 3ee:	e4 59       	subi	r30, 0x94	; 148
+ 3f0:	ff 4f       	sbci	r31, 0xFF	; 255
+ 3f2:	23 e7       	ldi	r18, 0x73	; 115
+ 3f4:	20 83       	st	Z, r18
+	node_number = node_number + 1;
+ 3f6:	01 96       	adiw	r24, 0x01	; 1
+ 3f8:	90 93 65 00 	sts	0x0065, r25
+ 3fc:	80 93 64 00 	sts	0x0064, r24
+	loop_count = 0x0000;
+ 400:	10 92 68 00 	sts	0x0068, r1
+ 404:	10 92 69 00 	sts	0x0069, r1
+ 408:	10 92 6a 00 	sts	0x006A, r1
+ 40c:	10 92 6b 00 	sts	0x006B, r1
+ 410:	08 95       	ret
+
+00000412 <left_right_operation>:
+}
+
+void left_right_operation(uint16_t speed)
+{
+	turn_left(speed);
+ 412:	0e 94 3b 01 	call	0x276	; 0x276 <turn_left>
+	directions_entry[node_number] = 'l';
+ 416:	80 91 64 00 	lds	r24, 0x0064
+ 41a:	90 91 65 00 	lds	r25, 0x0065
+ 41e:	fc 01       	movw	r30, r24
+ 420:	e4 59       	subi	r30, 0x94	; 148
+ 422:	ff 4f       	sbci	r31, 0xFF	; 255
+ 424:	2c e6       	ldi	r18, 0x6C	; 108
+ 426:	20 83       	st	Z, r18
+	node_number = node_number + 1;
+ 428:	01 96       	adiw	r24, 0x01	; 1
+ 42a:	90 93 65 00 	sts	0x0065, r25
+ 42e:	80 93 64 00 	sts	0x0064, r24
+ 432:	08 95       	ret
+
+00000434 <left_right_forward_operation>:
+}
+
+void left_right_forward_operation(uint16_t speed)
+{
+	turn_left(speed);
+ 434:	0e 94 3b 01 	call	0x276	; 0x276 <turn_left>
+	directions_entry[node_number] = 'l';
+ 438:	80 91 64 00 	lds	r24, 0x0064
+ 43c:	90 91 65 00 	lds	r25, 0x0065
+ 440:	fc 01       	movw	r30, r24
+ 442:	e4 59       	subi	r30, 0x94	; 148
+ 444:	ff 4f       	sbci	r31, 0xFF	; 255
+ 446:	2c e6       	ldi	r18, 0x6C	; 108
+ 448:	20 83       	st	Z, r18
+	node_number = node_number + 1;
+ 44a:	01 96       	adiw	r24, 0x01	; 1
+ 44c:	90 93 65 00 	sts	0x0065, r25
+ 450:	80 93 64 00 	sts	0x0064, r24
+ 454:	08 95       	ret
+
+00000456 <reverse_operation>:
+}
+
+void reverse_operation(uint16_t speed)
+{
+	turn_U(speed);
+ 456:	0e 94 6c 00 	call	0xd8	; 0xd8 <turn_U>
+	if (loop_count >= 2000)
+ 45a:	80 91 68 00 	lds	r24, 0x0068
+ 45e:	90 91 69 00 	lds	r25, 0x0069
+ 462:	a0 91 6a 00 	lds	r26, 0x006A
+ 466:	b0 91 6b 00 	lds	r27, 0x006B
+ 46a:	80 3d       	cpi	r24, 0xD0	; 208
+ 46c:	97 40       	sbci	r25, 0x07	; 7
+ 46e:	a1 05       	cpc	r26, r1
+ 470:	b1 05       	cpc	r27, r1
+ 472:	78 f0       	brcs	.+30     	; 0x492 <reverse_operation+0x3c>
+	{
+		directions_entry[node_number] = 'u';
+ 474:	80 91 64 00 	lds	r24, 0x0064
+ 478:	90 91 65 00 	lds	r25, 0x0065
+ 47c:	fc 01       	movw	r30, r24
+ 47e:	e4 59       	subi	r30, 0x94	; 148
+ 480:	ff 4f       	sbci	r31, 0xFF	; 255
+ 482:	25 e7       	ldi	r18, 0x75	; 117
+ 484:	20 83       	st	Z, r18
+		node_number = node_number + 1;
+ 486:	01 96       	adiw	r24, 0x01	; 1
+ 488:	90 93 65 00 	sts	0x0065, r25
+ 48c:	80 93 64 00 	sts	0x0064, r24
+ 490:	08 95       	ret
+	}
+	else
+	{
+		directions_entry[node_number] = 'l';
+ 492:	e0 91 64 00 	lds	r30, 0x0064
+ 496:	f0 91 65 00 	lds	r31, 0x0065
+ 49a:	e4 59       	subi	r30, 0x94	; 148
+ 49c:	ff 4f       	sbci	r31, 0xFF	; 255
+ 49e:	8c e6       	ldi	r24, 0x6C	; 108
+ 4a0:	80 83       	st	Z, r24
+ 4a2:	08 95       	ret
+
+000004a4 <destination_operation>:
+}
+
+void destination_operation(uint16_t speed)
+{
+	//stay_stop();
+	directions_entry[node_number] = 'e';
+ 4a4:	20 91 64 00 	lds	r18, 0x0064
+ 4a8:	30 91 65 00 	lds	r19, 0x0065
+ 4ac:	f9 01       	movw	r30, r18
+ 4ae:	e4 59       	subi	r30, 0x94	; 148
+ 4b0:	ff 4f       	sbci	r31, 0xFF	; 255
+ 4b2:	45 e6       	ldi	r20, 0x65	; 101
+ 4b4:	40 83       	st	Z, r20
+	node_number = node_number + 1;
+ 4b6:	2f 5f       	subi	r18, 0xFF	; 255
+ 4b8:	3f 4f       	sbci	r19, 0xFF	; 255
+ 4ba:	30 93 65 00 	sts	0x0065, r19
+ 4be:	20 93 64 00 	sts	0x0064, r18
+	//_delay_ms(2000);
+	turn_U_destination(speed);
+ 4c2:	0e 94 b9 00 	call	0x172	; 0x172 <turn_U_destination>
+ 4c6:	08 95       	ret
+
+000004c8 <evaluate_direction>:
+
+
+void evaluate_direction(char dir,uint16_t speed)
+{
+	char evaluation = 0;
+	evaluation = directions_solved[node_number_solved];
+ 4c8:	20 91 62 00 	lds	r18, 0x0062
+ 4cc:	30 91 63 00 	lds	r19, 0x0063
+ 4d0:	f9 01       	movw	r30, r18
+ 4d2:	e0 53       	subi	r30, 0x30	; 48
+ 4d4:	ff 4f       	sbci	r31, 0xFF	; 255
+ 4d6:	80 81       	ld	r24, Z
+	node_number_solved = node_number_solved + 1;
+ 4d8:	2f 5f       	subi	r18, 0xFF	; 255
+ 4da:	3f 4f       	sbci	r19, 0xFF	; 255
+ 4dc:	30 93 63 00 	sts	0x0063, r19
+ 4e0:	20 93 62 00 	sts	0x0062, r18
+	
+	if (evaluation == 's')
+ 4e4:	83 37       	cpi	r24, 0x73	; 115
+ 4e6:	39 f4       	brne	.+14     	; 0x4f6 <evaluate_direction+0x2e>
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 4e8:	79 bd       	out	0x29, r23	; 41
+ 4ea:	68 bd       	out	0x28, r22	; 40
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 4ec:	7b bd       	out	0x2b, r23	; 43
+ 4ee:	6a bd       	out	0x2a, r22	; 42
+	node_number_solved = node_number_solved + 1;
+	
+	if (evaluation == 's')
+	{
+		set_speed_RL(speed);
+		go_forward();
+ 4f0:	0e 94 49 00 	call	0x92	; 0x92 <go_forward>
+ 4f4:	08 95       	ret
+	}
+	else if (evaluation == 'u')
+ 4f6:	85 37       	cpi	r24, 0x75	; 117
+ 4f8:	21 f4       	brne	.+8      	; 0x502 <evaluate_direction+0x3a>
+	{
+		turn_U(speed);
+ 4fa:	cb 01       	movw	r24, r22
+ 4fc:	0e 94 6c 00 	call	0xd8	; 0xd8 <turn_U>
+ 500:	08 95       	ret
+	}
+	else if (evaluation == 'r')
+ 502:	82 37       	cpi	r24, 0x72	; 114
+ 504:	21 f4       	brne	.+8      	; 0x50e <evaluate_direction+0x46>
+	{
+		turn_left(speed);
+ 506:	cb 01       	movw	r24, r22
+ 508:	0e 94 3b 01 	call	0x276	; 0x276 <turn_left>
+ 50c:	08 95       	ret
+	}
+	else if (evaluation == 'l')
+ 50e:	8c 36       	cpi	r24, 0x6C	; 108
+ 510:	19 f4       	brne	.+6      	; 0x518 <evaluate_direction+0x50>
+	{
+		turn_right(speed);
+ 512:	cb 01       	movw	r24, r22
+ 514:	0e 94 7a 01 	call	0x2f4	; 0x2f4 <turn_right>
+ 518:	08 95       	ret
+
+0000051a <main>:
+{
+	uint16_t speed=300, destination=0;
+	uint8_t sensor_data_hold=0, Right_trigged=0, Left_trigged=0, Forward_trigged=0;//, speed_grad_count=0;
+	
+	//port pin initialization
+	PORTA = 03;
+ 51a:	83 e0       	ldi	r24, 0x03	; 3
+ 51c:	8b bb       	out	0x1b, r24	; 27
+	DDRA = 00;
+ 51e:	1a ba       	out	0x1a, r1	; 26
+	PORTB=0x00;
+ 520:	18 ba       	out	0x18, r1	; 24
+	DDRB=0x0F;
+ 522:	9f e0       	ldi	r25, 0x0F	; 15
+ 524:	97 bb       	out	0x17, r25	; 23
+	PORTC=0xFF;
+ 526:	9f ef       	ldi	r25, 0xFF	; 255
+ 528:	95 bb       	out	0x15, r25	; 21
+	DDRC=0x00;
+ 52a:	14 ba       	out	0x14, r1	; 20
+	PORTD=0x00;
+ 52c:	12 ba       	out	0x12, r1	; 18
+	DDRD=0x30;
+ 52e:	90 e3       	ldi	r25, 0x30	; 48
+ 530:	91 bb       	out	0x11, r25	; 17
+	
+	//Timer Counter1 Initialization
+	TCCR1A=0xA2;
+ 532:	92 ea       	ldi	r25, 0xA2	; 162
+ 534:	9f bd       	out	0x2f, r25	; 47
+	TCCR1B=0x18;
+ 536:	98 e1       	ldi	r25, 0x18	; 24
+ 538:	9e bd       	out	0x2e, r25	; 46
+	TCNT1=0x0000;
+ 53a:	1d bc       	out	0x2d, r1	; 45
+ 53c:	1c bc       	out	0x2c, r1	; 44
+	ICR1H=0x03;
+ 53e:	87 bd       	out	0x27, r24	; 39
+	ICR1L=0xE8; //03E8=1000 in decimal
+ 540:	88 ee       	ldi	r24, 0xE8	; 232
+ 542:	86 bd       	out	0x26, r24	; 38
+	OCR1A=speed;
+ 544:	8c e2       	ldi	r24, 0x2C	; 44
+ 546:	91 e0       	ldi	r25, 0x01	; 1
+ 548:	9b bd       	out	0x2b, r25	; 43
+ 54a:	8a bd       	out	0x2a, r24	; 42
+	OCR1B=speed;
+ 54c:	99 bd       	out	0x29, r25	; 41
+ 54e:	88 bd       	out	0x28, r24	; 40
+	
+	//usart_init(9600); //USART Initialization
+	
+	//start_tour:
+	while (PINA & (1<<PA0));
+ 550:	c8 99       	sbic	0x19, 0	; 25
+ 552:	fe cf       	rjmp	.-4      	; 0x550 <main+0x36>
+ 554:	2f ef       	ldi	r18, 0xFF	; 255
+ 556:	89 e6       	ldi	r24, 0x69	; 105
+ 558:	98 e1       	ldi	r25, 0x18	; 24
+ 55a:	21 50       	subi	r18, 0x01	; 1
+ 55c:	80 40       	sbci	r24, 0x00	; 0
+ 55e:	90 40       	sbci	r25, 0x00	; 0
+ 560:	e1 f7       	brne	.-8      	; 0x55a <main+0x40>
+ 562:	00 c0       	rjmp	.+0      	; 0x564 <main+0x4a>
+ 564:	00 00       	nop
+	_delay_ms(1000);
+	go_forward();
+ 566:	0e 94 49 00 	call	0x92	; 0x92 <go_forward>
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 56a:	84 ef       	ldi	r24, 0xF4	; 244
+ 56c:	91 e0       	ldi	r25, 0x01	; 1
+ 56e:	99 bd       	out	0x29, r25	; 41
+ 570:	88 bd       	out	0x28, r24	; 40
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 572:	9b bd       	out	0x2b, r25	; 43
+ 574:	8a bd       	out	0x2a, r24	; 42
+ 576:	2f ef       	ldi	r18, 0xFF	; 255
+ 578:	86 e7       	ldi	r24, 0x76	; 118
+ 57a:	91 e0       	ldi	r25, 0x01	; 1
+ 57c:	21 50       	subi	r18, 0x01	; 1
+ 57e:	80 40       	sbci	r24, 0x00	; 0
+ 580:	90 40       	sbci	r25, 0x00	; 0
+ 582:	e1 f7       	brne	.-8      	; 0x57c <main+0x62>
+ 584:	00 c0       	rjmp	.+0      	; 0x586 <main+0x6c>
+ 586:	00 00       	nop
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 588:	8c e2       	ldi	r24, 0x2C	; 44
+ 58a:	91 e0       	ldi	r25, 0x01	; 1
+ 58c:	99 bd       	out	0x29, r25	; 41
+ 58e:	88 bd       	out	0x28, r24	; 40
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 590:	9b bd       	out	0x2b, r25	; 43
+ 592:	8a bd       	out	0x2a, r24	; 42
+	_delay_ms(1000);
+	go_forward();
+	set_speed_RL(speed+200);
+	_delay_ms(60);
+	set_speed_RL(speed);
+	sensor_data_hold = sensor_data();
+ 594:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+ 598:	82 74       	andi	r24, 0x42	; 66
+	while ((sensor_data_hold & (1<<6)) || (sensor_data_hold & (1<<1)))
+ 59a:	21 f0       	breq	.+8      	; 0x5a4 <main+0x8a>
+	{
+		sensor_data_hold = sensor_data();
+ 59c:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+ 5a0:	82 74       	andi	r24, 0x42	; 66
+	go_forward();
+	set_speed_RL(speed+200);
+	_delay_ms(60);
+	set_speed_RL(speed);
+	sensor_data_hold = sensor_data();
+	while ((sensor_data_hold & (1<<6)) || (sensor_data_hold & (1<<1)))
+ 5a2:	e1 f7       	brne	.-8      	; 0x59c <main+0x82>
+			}
+			_delay_ms(100);  //delay can be changed
+			sensor_data_hold = sensor_data();
+			if ((sensor_data_hold & 0b01111110))
+			{
+				Forward_trigged = 1;
+ 5a4:	81 2c       	mov	r8, r1
+ 5a6:	71 2c       	mov	r7, r1
+ 5a8:	c1 2c       	mov	r12, r1
+	OCR1B = speed_R;
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 5aa:	0f 2e       	mov	r0, r31
+ 5ac:	f6 e9       	ldi	r31, 0x96	; 150
+ 5ae:	ef 2e       	mov	r14, r31
+ 5b0:	f1 2c       	mov	r15, r1
+ 5b2:	f0 2d       	mov	r31, r0
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 5b4:	cc e2       	ldi	r28, 0x2C	; 44
+ 5b6:	d1 e0       	ldi	r29, 0x01	; 1
+			}
+		}
+		else if ((sensor_data_hold & 0b00001111) == 0b00001111)
+		{
+			set_speed_RL(speed);
+			destination = 0x00;
+ 5b8:	61 2c       	mov	r6, r1
+ 5ba:	91 2c       	mov	r9, r1
+			{
+				_delay_us(50);
+				sensor_data_hold = sensor_data();
+				if (sensor_data_hold & (1<<6))  // must change for 8 system
+				{
+					Left_trigged=1;
+ 5bc:	bb 24       	eor	r11, r11
+ 5be:	b3 94       	inc	r11
+			}
+			else if ((Left_trigged == 1) && (Forward_trigged == 1))
+			{
+				left_right_forward_operation(speed);
+				Left_trigged = 0;
+				Forward_trigged = 0;
+ 5c0:	d1 2c       	mov	r13, r1
+			{
+				_delay_us(50);
+				sensor_data_hold = sensor_data();
+				if (sensor_data_hold & (1<<6))  // must change for 8 system
+				{
+					Left_trigged=1;
+ 5c2:	ab 2c       	mov	r10, r11
+ 5c4:	03 c0       	rjmp	.+6      	; 0x5cc <main+0xb2>
+ 5c6:	c1 2e       	mov	r12, r17
+ 5c8:	01 c0       	rjmp	.+2      	; 0x5cc <main+0xb2>
+ 5ca:	71 2e       	mov	r7, r17
+	//************************************************************************************************************************
+	// main while loop is started from here **********************************************************************************
+	//************************************************************************************************************************	
+    while(1)  //while loop 1
+    {
+		if (loop_count < 2000)
+ 5cc:	80 91 68 00 	lds	r24, 0x0068
+ 5d0:	90 91 69 00 	lds	r25, 0x0069
+ 5d4:	a0 91 6a 00 	lds	r26, 0x006A
+ 5d8:	b0 91 6b 00 	lds	r27, 0x006B
+ 5dc:	80 3d       	cpi	r24, 0xD0	; 208
+ 5de:	27 e0       	ldi	r18, 0x07	; 7
+ 5e0:	92 07       	cpc	r25, r18
+ 5e2:	a1 05       	cpc	r26, r1
+ 5e4:	b1 05       	cpc	r27, r1
+ 5e6:	58 f4       	brcc	.+22     	; 0x5fe <main+0xe4>
+		{
+			loop_count = loop_count + 1;
+ 5e8:	01 96       	adiw	r24, 0x01	; 1
+ 5ea:	a1 1d       	adc	r26, r1
+ 5ec:	b1 1d       	adc	r27, r1
+ 5ee:	80 93 68 00 	sts	0x0068, r24
+ 5f2:	90 93 69 00 	sts	0x0069, r25
+ 5f6:	a0 93 6a 00 	sts	0x006A, r26
+ 5fa:	b0 93 6b 00 	sts	0x006B, r27
+		}
+//start_over_while_1:
+
+		sensor_data_hold = sensor_data();  //normally read
+ 5fe:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+		
+		// start line follow
+		if ((sensor_data_hold & (3<<3)) == (3<<3))
+ 602:	98 2f       	mov	r25, r24
+ 604:	98 71       	andi	r25, 0x18	; 24
+ 606:	98 31       	cpi	r25, 0x18	; 24
+ 608:	29 f4       	brne	.+10     	; 0x614 <main+0xfa>
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 60a:	d9 bd       	out	0x29, r29	; 41
+ 60c:	c8 bd       	out	0x28, r28	; 40
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 60e:	db bd       	out	0x2b, r29	; 43
+ 610:	ca bd       	out	0x2a, r28	; 42
+ 612:	09 c0       	rjmp	.+18     	; 0x626 <main+0x10c>
+		// start line follow
+		if ((sensor_data_hold & (3<<3)) == (3<<3))
+		{
+			set_speed_RL(speed);
+		}
+		else if ((sensor_data_hold & (1<<3)) == (1<<3))
+ 614:	83 ff       	sbrs	r24, 3
+ 616:	03 c0       	rjmp	.+6      	; 0x61e <main+0x104>
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 618:	f9 bc       	out	0x29, r15	; 41
+ 61a:	e8 bc       	out	0x28, r14	; 40
+ 61c:	04 c0       	rjmp	.+8      	; 0x626 <main+0x10c>
+		}
+		else if ((sensor_data_hold & (1<<3)) == (1<<3))
+		{
+			set_speed_R(speed - 150);  //previously 150
+		}
+		else if ((sensor_data_hold & (1<<4)) == (1<<4))
+ 61e:	84 ff       	sbrs	r24, 4
+ 620:	02 c0       	rjmp	.+4      	; 0x626 <main+0x10c>
+	OCR1B = speed_R;
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 622:	fb bc       	out	0x2b, r15	; 43
+ 624:	ea bc       	out	0x2a, r14	; 42
+			set_speed_L(speed - 150);  //previously 150
+		}
+		// end line follow
+		
+		
+		if ((sensor_data_hold & 0b11110000) == 0b11110000)
+ 626:	98 2f       	mov	r25, r24
+ 628:	90 7f       	andi	r25, 0xF0	; 240
+ 62a:	90 3f       	cpi	r25, 0xF0	; 240
+ 62c:	09 f0       	breq	.+2      	; 0x630 <main+0x116>
+ 62e:	53 c0       	rjmp	.+166    	; 0x6d6 <main+0x1bc>
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 630:	d9 bd       	out	0x29, r29	; 41
+ 632:	c8 bd       	out	0x28, r28	; 40
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 634:	db bd       	out	0x2b, r29	; 43
+ 636:	ca bd       	out	0x2a, r28	; 42
+		
+		
+		if ((sensor_data_hold & 0b11110000) == 0b11110000)
+		{
+			set_speed_RL(speed);
+			destination=0x00;
+ 638:	06 2d       	mov	r16, r6
+ 63a:	19 2d       	mov	r17, r9
+ 63c:	17 c0       	rjmp	.+46     	; 0x66c <main+0x152>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 63e:	85 e8       	ldi	r24, 0x85	; 133
+ 640:	8a 95       	dec	r24
+ 642:	f1 f7       	brne	.-4      	; 0x640 <main+0x126>
+ 644:	00 00       	nop
+			while((sensor_data_hold & (1<<6)) || (sensor_data_hold & (1<<1))) // can be changed to 8 sensor system
+			{
+				_delay_us(50);
+				sensor_data_hold = sensor_data();
+ 646:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+				if (sensor_data_hold & (1<<1))
+ 64a:	81 fd       	sbrc	r24, 1
+				{
+					Right_trigged=1;
+ 64c:	ca 2c       	mov	r12, r10
+				}
+				if ((sensor_data_hold & 0b01111110) == 0b01111110)
+ 64e:	98 2f       	mov	r25, r24
+ 650:	9e 77       	andi	r25, 0x7E	; 126
+ 652:	9e 37       	cpi	r25, 0x7E	; 126
+ 654:	59 f4       	brne	.+22     	; 0x66c <main+0x152>
+				{
+					destination = destination + 1;
+ 656:	0f 5f       	subi	r16, 0xFF	; 255
+ 658:	1f 4f       	sbci	r17, 0xFF	; 255
+					if (destination > 7000)   // destination triggering
+ 65a:	09 35       	cpi	r16, 0x59	; 89
+ 65c:	9b e1       	ldi	r25, 0x1B	; 27
+ 65e:	19 07       	cpc	r17, r25
+ 660:	28 f0       	brcs	.+10     	; 0x66c <main+0x152>
+					{
+						destination = 0x00;
+						destination_operation(speed);
+ 662:	8c e2       	ldi	r24, 0x2C	; 44
+ 664:	91 e0       	ldi	r25, 0x01	; 1
+ 666:	0e 94 52 02 	call	0x4a4	; 0x4a4 <destination_operation>
+						//while (PINA & (1<<PA0));
+						goto solv_maze;
+ 66a:	94 c0       	rjmp	.+296    	; 0x794 <main+0x27a>
+ 66c:	82 74       	andi	r24, 0x42	; 66
+		
+		if ((sensor_data_hold & 0b11110000) == 0b11110000)
+		{
+			set_speed_RL(speed);
+			destination=0x00;
+			while((sensor_data_hold & (1<<6)) || (sensor_data_hold & (1<<1))) // can be changed to 8 sensor system
+ 66e:	39 f7       	brne	.-50     	; 0x63e <main+0x124>
+ 670:	1c 2d       	mov	r17, r12
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 672:	2f ef       	ldi	r18, 0xFF	; 255
+ 674:	80 e7       	ldi	r24, 0x70	; 112
+ 676:	92 e0       	ldi	r25, 0x02	; 2
+ 678:	21 50       	subi	r18, 0x01	; 1
+ 67a:	80 40       	sbci	r24, 0x00	; 0
+ 67c:	90 40       	sbci	r25, 0x00	; 0
+ 67e:	e1 f7       	brne	.-8      	; 0x678 <main+0x15e>
+ 680:	00 c0       	rjmp	.+0      	; 0x682 <main+0x168>
+ 682:	00 00       	nop
+					}
+				}
+				
+			}
+			_delay_ms(100);  //delay can be changed
+			sensor_data_hold = sensor_data();
+ 684:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+			if ((sensor_data_hold & 0b01111110))
+ 688:	8e 77       	andi	r24, 0x7E	; 126
+ 68a:	09 f0       	breq	.+2      	; 0x68e <main+0x174>
+ 68c:	d1 c1       	rjmp	.+930    	; 0xa30 <__stack+0x1d1>
+			{
+				Forward_trigged = 1;
+			}
+			//decide from probable 4 way
+			if ((Right_trigged == 0) && (Forward_trigged == 0))
+ 68e:	c1 10       	cpse	r12, r1
+ 690:	0f c0       	rjmp	.+30     	; 0x6b0 <main+0x196>
+ 692:	81 10       	cpse	r8, r1
+ 694:	04 c0       	rjmp	.+8      	; 0x69e <main+0x184>
+			{
+				left_operation(speed);
+ 696:	ce 01       	movw	r24, r28
+ 698:	0e 94 b9 01 	call	0x372	; 0x372 <left_operation>
+				Right_trigged = 0;
+				Forward_trigged = 0;
+ 69c:	97 cf       	rjmp	.-210    	; 0x5cc <main+0xb2>
+			}
+			else if ((Right_trigged == 0) && (Forward_trigged == 1))
+ 69e:	21 e0       	ldi	r18, 0x01	; 1
+ 6a0:	82 12       	cpse	r8, r18
+ 6a2:	94 cf       	rjmp	.-216    	; 0x5cc <main+0xb2>
+			{
+				left_forward_operation(speed);
+ 6a4:	ce 01       	movw	r24, r28
+ 6a6:	0e 94 db 01 	call	0x3b6	; 0x3b6 <left_forward_operation>
+				Right_trigged = 0;
+				Forward_trigged = 0;
+ 6aa:	8d 2c       	mov	r8, r13
+				Forward_trigged = 0;
+			}
+			else if ((Right_trigged == 0) && (Forward_trigged == 1))
+			{
+				left_forward_operation(speed);
+				Right_trigged = 0;
+ 6ac:	cd 2c       	mov	r12, r13
+				Forward_trigged = 0;
+ 6ae:	8e cf       	rjmp	.-228    	; 0x5cc <main+0xb2>
+			}
+			else if ((Right_trigged == 1) && (Forward_trigged == 0))
+ 6b0:	11 30       	cpi	r17, 0x01	; 1
+ 6b2:	09 f0       	breq	.+2      	; 0x6b6 <main+0x19c>
+ 6b4:	8b cf       	rjmp	.-234    	; 0x5cc <main+0xb2>
+ 6b6:	81 10       	cpse	r8, r1
+ 6b8:	05 c0       	rjmp	.+10     	; 0x6c4 <main+0x1aa>
+			{
+				left_right_operation(speed);
+ 6ba:	ce 01       	movw	r24, r28
+ 6bc:	0e 94 09 02 	call	0x412	; 0x412 <left_right_operation>
+				Right_trigged = 0;
+ 6c0:	cd 2c       	mov	r12, r13
+				Forward_trigged = 0;
+ 6c2:	84 cf       	rjmp	.-248    	; 0x5cc <main+0xb2>
+			}
+			else if ((Right_trigged == 1) && (Forward_trigged == 1))
+ 6c4:	81 e0       	ldi	r24, 0x01	; 1
+ 6c6:	88 12       	cpse	r8, r24
+ 6c8:	7e cf       	rjmp	.-260    	; 0x5c6 <main+0xac>
+			{
+				left_right_forward_operation(speed);
+ 6ca:	ce 01       	movw	r24, r28
+ 6cc:	0e 94 1a 02 	call	0x434	; 0x434 <left_right_forward_operation>
+				Right_trigged = 0;
+				Forward_trigged = 0;
+ 6d0:	8d 2c       	mov	r8, r13
+				Forward_trigged = 0;
+			}
+			else if ((Right_trigged == 1) && (Forward_trigged == 1))
+			{
+				left_right_forward_operation(speed);
+				Right_trigged = 0;
+ 6d2:	cd 2c       	mov	r12, r13
+ 6d4:	7b cf       	rjmp	.-266    	; 0x5cc <main+0xb2>
+				Forward_trigged = 0;
+			}
+		}
+		else if ((sensor_data_hold & 0b00001111) == 0b00001111)
+ 6d6:	98 2f       	mov	r25, r24
+ 6d8:	9f 70       	andi	r25, 0x0F	; 15
+ 6da:	9f 30       	cpi	r25, 0x0F	; 15
+ 6dc:	09 f0       	breq	.+2      	; 0x6e0 <main+0x1c6>
+ 6de:	53 c0       	rjmp	.+166    	; 0x786 <main+0x26c>
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 6e0:	d9 bd       	out	0x29, r29	; 41
+ 6e2:	c8 bd       	out	0x28, r28	; 40
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 6e4:	db bd       	out	0x2b, r29	; 43
+ 6e6:	ca bd       	out	0x2a, r28	; 42
+			}
+		}
+		else if ((sensor_data_hold & 0b00001111) == 0b00001111)
+		{
+			set_speed_RL(speed);
+			destination = 0x00;
+ 6e8:	06 2d       	mov	r16, r6
+ 6ea:	19 2d       	mov	r17, r9
+ 6ec:	17 c0       	rjmp	.+46     	; 0x71c <main+0x202>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 6ee:	95 e8       	ldi	r25, 0x85	; 133
+ 6f0:	9a 95       	dec	r25
+ 6f2:	f1 f7       	brne	.-4      	; 0x6f0 <main+0x1d6>
+ 6f4:	00 00       	nop
+			while((sensor_data_hold & (1<<6)) || (sensor_data_hold & (1<<1))) // can be changed to 8 sensor system
+			{
+				_delay_us(50);
+				sensor_data_hold = sensor_data();
+ 6f6:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+				if (sensor_data_hold & (1<<6))  // must change for 8 system
+ 6fa:	86 fd       	sbrc	r24, 6
+				{
+					Left_trigged=1;
+ 6fc:	7a 2c       	mov	r7, r10
+				}
+				if ((sensor_data_hold & 0b01111110) == 0b01111110)
+ 6fe:	98 2f       	mov	r25, r24
+ 700:	9e 77       	andi	r25, 0x7E	; 126
+ 702:	9e 37       	cpi	r25, 0x7E	; 126
+ 704:	59 f4       	brne	.+22     	; 0x71c <main+0x202>
+				{
+					destination = destination + 1;
+ 706:	0f 5f       	subi	r16, 0xFF	; 255
+ 708:	1f 4f       	sbci	r17, 0xFF	; 255
+					if (destination > 7000)   // destination triggering
+ 70a:	09 35       	cpi	r16, 0x59	; 89
+ 70c:	2b e1       	ldi	r18, 0x1B	; 27
+ 70e:	12 07       	cpc	r17, r18
+ 710:	28 f0       	brcs	.+10     	; 0x71c <main+0x202>
+					{
+						destination = 0x00;
+						destination_operation(speed);
+ 712:	8c e2       	ldi	r24, 0x2C	; 44
+ 714:	91 e0       	ldi	r25, 0x01	; 1
+ 716:	0e 94 52 02 	call	0x4a4	; 0x4a4 <destination_operation>
+						//while (PINA & (1<<PA0));
+						goto solv_maze;
+ 71a:	3c c0       	rjmp	.+120    	; 0x794 <main+0x27a>
+ 71c:	82 74       	andi	r24, 0x42	; 66
+		}
+		else if ((sensor_data_hold & 0b00001111) == 0b00001111)
+		{
+			set_speed_RL(speed);
+			destination = 0x00;
+			while((sensor_data_hold & (1<<6)) || (sensor_data_hold & (1<<1))) // can be changed to 8 sensor system
+ 71e:	39 f7       	brne	.-50     	; 0x6ee <main+0x1d4>
+ 720:	17 2d       	mov	r17, r7
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 722:	8f ef       	ldi	r24, 0xFF	; 255
+ 724:	90 e7       	ldi	r25, 0x70	; 112
+ 726:	22 e0       	ldi	r18, 0x02	; 2
+ 728:	81 50       	subi	r24, 0x01	; 1
+ 72a:	90 40       	sbci	r25, 0x00	; 0
+ 72c:	20 40       	sbci	r18, 0x00	; 0
+ 72e:	e1 f7       	brne	.-8      	; 0x728 <main+0x20e>
+ 730:	00 c0       	rjmp	.+0      	; 0x732 <main+0x218>
+ 732:	00 00       	nop
+						//goto start_test_operation;
+					}
+				}
+			}
+			_delay_ms(100);  //delay can be changed
+			sensor_data_hold = sensor_data();
+ 734:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+			if ((sensor_data_hold & 0b01111110))
+ 738:	8e 77       	andi	r24, 0x7E	; 126
+ 73a:	09 f0       	breq	.+2      	; 0x73e <main+0x224>
+ 73c:	7d c1       	rjmp	.+762    	; 0xa38 <__stack+0x1d9>
+			{
+				Forward_trigged = 1;
+			}
+			//decide from probable 4 way
+			if ((Left_trigged == 0) && (Forward_trigged == 0))
+ 73e:	71 10       	cpse	r7, r1
+ 740:	0f c0       	rjmp	.+30     	; 0x760 <main+0x246>
+ 742:	81 10       	cpse	r8, r1
+ 744:	04 c0       	rjmp	.+8      	; 0x74e <main+0x234>
+			{
+				right_operation(speed);
+ 746:	ce 01       	movw	r24, r28
+ 748:	0e 94 ca 01 	call	0x394	; 0x394 <right_operation>
+				Left_trigged = 0;
+				Forward_trigged = 0;
+ 74c:	3f cf       	rjmp	.-386    	; 0x5cc <main+0xb2>
+			}
+			else if ((Left_trigged == 0) && (Forward_trigged == 1))
+ 74e:	81 e0       	ldi	r24, 0x01	; 1
+ 750:	88 12       	cpse	r8, r24
+ 752:	3c cf       	rjmp	.-392    	; 0x5cc <main+0xb2>
+			{
+				right_forward_operation(speed);
+ 754:	ce 01       	movw	r24, r28
+ 756:	0e 94 ec 01 	call	0x3d8	; 0x3d8 <right_forward_operation>
+				Left_trigged = 0;
+				Forward_trigged = 0;
+ 75a:	8d 2c       	mov	r8, r13
+				Forward_trigged = 0;
+			}
+			else if ((Left_trigged == 0) && (Forward_trigged == 1))
+			{
+				right_forward_operation(speed);
+				Left_trigged = 0;
+ 75c:	7d 2c       	mov	r7, r13
+				Forward_trigged = 0;
+ 75e:	36 cf       	rjmp	.-404    	; 0x5cc <main+0xb2>
+			}
+			else if ((Left_trigged == 1) && (Forward_trigged == 0))
+ 760:	11 30       	cpi	r17, 0x01	; 1
+ 762:	09 f0       	breq	.+2      	; 0x766 <main+0x24c>
+ 764:	33 cf       	rjmp	.-410    	; 0x5cc <main+0xb2>
+ 766:	81 10       	cpse	r8, r1
+ 768:	05 c0       	rjmp	.+10     	; 0x774 <main+0x25a>
+			{
+				left_right_operation(speed);
+ 76a:	ce 01       	movw	r24, r28
+ 76c:	0e 94 09 02 	call	0x412	; 0x412 <left_right_operation>
+				Left_trigged = 0;
+ 770:	7d 2c       	mov	r7, r13
+				Forward_trigged = 0;
+ 772:	2c cf       	rjmp	.-424    	; 0x5cc <main+0xb2>
+			}
+			else if ((Left_trigged == 1) && (Forward_trigged == 1))
+ 774:	91 e0       	ldi	r25, 0x01	; 1
+ 776:	89 12       	cpse	r8, r25
+ 778:	28 cf       	rjmp	.-432    	; 0x5ca <main+0xb0>
+			{
+				left_right_forward_operation(speed);
+ 77a:	ce 01       	movw	r24, r28
+ 77c:	0e 94 1a 02 	call	0x434	; 0x434 <left_right_forward_operation>
+				Left_trigged = 0;
+				Forward_trigged = 0;
+ 780:	8d 2c       	mov	r8, r13
+				Forward_trigged = 0;
+			}
+			else if ((Left_trigged == 1) && (Forward_trigged == 1))
+			{
+				left_right_forward_operation(speed);
+				Left_trigged = 0;
+ 782:	7d 2c       	mov	r7, r13
+ 784:	23 cf       	rjmp	.-442    	; 0x5cc <main+0xb2>
+				Forward_trigged = 0;
+			}
+		}
+		else if ((sensor_data_hold & 0b01111110) == 0x00)
+ 786:	8e 77       	andi	r24, 0x7E	; 126
+ 788:	09 f0       	breq	.+2      	; 0x78c <main+0x272>
+ 78a:	20 cf       	rjmp	.-448    	; 0x5cc <main+0xb2>
+		{
+			reverse_operation(speed);
+ 78c:	ce 01       	movw	r24, r28
+ 78e:	0e 94 2b 02 	call	0x456	; 0x456 <reverse_operation>
+ 792:	1c cf       	rjmp	.-456    	; 0x5cc <main+0xb2>
+		}
+    }
+
+solv_maze:
+
+	inr=1;
+ 794:	81 e0       	ldi	r24, 0x01	; 1
+ 796:	90 e0       	ldi	r25, 0x00	; 0
+ 798:	90 93 61 00 	sts	0x0061, r25
+ 79c:	80 93 60 00 	sts	0x0060, r24
+	
+	for (length_node=node_number-1;length_node>=1;length_node=length_node-1)
+ 7a0:	80 91 64 00 	lds	r24, 0x0064
+ 7a4:	90 91 65 00 	lds	r25, 0x0065
+ 7a8:	9c 01       	movw	r18, r24
+ 7aa:	21 50       	subi	r18, 0x01	; 1
+ 7ac:	31 09       	sbc	r19, r1
+ 7ae:	30 93 67 00 	sts	0x0067, r19
+ 7b2:	20 93 66 00 	sts	0x0066, r18
+ 7b6:	23 2b       	or	r18, r19
+ 7b8:	d1 f0       	breq	.+52     	; 0x7ee <main+0x2d4>
+ 7ba:	21 e0       	ldi	r18, 0x01	; 1
+ 7bc:	30 e0       	ldi	r19, 0x00	; 0
+ 7be:	fc 01       	movw	r30, r24
+ 7c0:	e4 59       	subi	r30, 0x94	; 148
+ 7c2:	ff 4f       	sbci	r31, 0xFF	; 255
+ 7c4:	d9 01       	movw	r26, r18
+ 7c6:	a0 53       	subi	r26, 0x30	; 48
+ 7c8:	bf 4f       	sbci	r27, 0xFF	; 255
+ 7ca:	4d e6       	ldi	r20, 0x6D	; 109
+ 7cc:	50 e0       	ldi	r21, 0x00	; 0
+	{
+		directions_solved[inr]=directions_entry[length_node];
+ 7ce:	62 91       	ld	r22, -Z
+ 7d0:	6d 93       	st	X+, r22
+
+solv_maze:
+
+	inr=1;
+	
+	for (length_node=node_number-1;length_node>=1;length_node=length_node-1)
+ 7d2:	e4 17       	cp	r30, r20
+ 7d4:	f5 07       	cpc	r31, r21
+ 7d6:	d9 f7       	brne	.-10     	; 0x7ce <main+0x2b4>
+ 7d8:	82 0f       	add	r24, r18
+ 7da:	93 1f       	adc	r25, r19
+ 7dc:	01 97       	sbiw	r24, 0x01	; 1
+ 7de:	90 93 61 00 	sts	0x0061, r25
+ 7e2:	80 93 60 00 	sts	0x0060, r24
+ 7e6:	10 92 67 00 	sts	0x0067, r1
+ 7ea:	10 92 66 00 	sts	0x0066, r1
+	{
+		directions_solved[inr]=directions_entry[length_node];
+		inr = inr + 1;
+	}
+	
+	node_number = 1;
+ 7ee:	81 e0       	ldi	r24, 0x01	; 1
+ 7f0:	90 e0       	ldi	r25, 0x00	; 0
+ 7f2:	90 93 65 00 	sts	0x0065, r25
+ 7f6:	80 93 64 00 	sts	0x0064, r24
+	node_number_solved = 2;
+ 7fa:	82 e0       	ldi	r24, 0x02	; 2
+ 7fc:	90 e0       	ldi	r25, 0x00	; 0
+ 7fe:	90 93 63 00 	sts	0x0063, r25
+ 802:	80 93 62 00 	sts	0x0062, r24
+ 806:	2f ef       	ldi	r18, 0xFF	; 255
+ 808:	89 e6       	ldi	r24, 0x69	; 105
+ 80a:	98 e1       	ldi	r25, 0x18	; 24
+ 80c:	21 50       	subi	r18, 0x01	; 1
+ 80e:	80 40       	sbci	r24, 0x00	; 0
+ 810:	90 40       	sbci	r25, 0x00	; 0
+ 812:	e1 f7       	brne	.-8      	; 0x80c <main+0x2f2>
+ 814:	00 c0       	rjmp	.+0      	; 0x816 <main+0x2fc>
+ 816:	00 00       	nop
+	
+	_delay_ms(1000);
+	go_forward();
+ 818:	0e 94 49 00 	call	0x92	; 0x92 <go_forward>
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 81c:	84 ef       	ldi	r24, 0xF4	; 244
+ 81e:	91 e0       	ldi	r25, 0x01	; 1
+ 820:	99 bd       	out	0x29, r25	; 41
+ 822:	88 bd       	out	0x28, r24	; 40
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 824:	9b bd       	out	0x2b, r25	; 43
+ 826:	8a bd       	out	0x2a, r24	; 42
+ 828:	2f ef       	ldi	r18, 0xFF	; 255
+ 82a:	86 e7       	ldi	r24, 0x76	; 118
+ 82c:	91 e0       	ldi	r25, 0x01	; 1
+ 82e:	21 50       	subi	r18, 0x01	; 1
+ 830:	80 40       	sbci	r24, 0x00	; 0
+ 832:	90 40       	sbci	r25, 0x00	; 0
+ 834:	e1 f7       	brne	.-8      	; 0x82e <main+0x314>
+ 836:	00 c0       	rjmp	.+0      	; 0x838 <main+0x31e>
+ 838:	00 00       	nop
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 83a:	8c e2       	ldi	r24, 0x2C	; 44
+ 83c:	91 e0       	ldi	r25, 0x01	; 1
+ 83e:	99 bd       	out	0x29, r25	; 41
+ 840:	88 bd       	out	0x28, r24	; 40
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 842:	9b bd       	out	0x2b, r25	; 43
+ 844:	8a bd       	out	0x2a, r24	; 42
+ 846:	0f 2e       	mov	r0, r31
+ 848:	f6 e9       	ldi	r31, 0x96	; 150
+ 84a:	ef 2e       	mov	r14, r31
+ 84c:	f1 2c       	mov	r15, r1
+ 84e:	f0 2d       	mov	r31, r0
+			}
+		}
+		else if ((sensor_data_hold & 0b00001111) == 0b00001111)
+		{
+			set_speed_RL(speed);
+			destination = 0x00;
+ 850:	41 2c       	mov	r4, r1
+ 852:	51 2c       	mov	r5, r1
+			{
+				_delay_us(50);
+				sensor_data_hold = sensor_data();
+				if (sensor_data_hold & (1<<6))  // must change for 8 system
+				{
+					Left_trigged=1;
+ 854:	33 24       	eor	r3, r3
+ 856:	33 94       	inc	r3
+			else if ((Left_trigged == 1) && (Forward_trigged == 1))
+			{
+				evaluate_direction(6,speed);
+				//left_right_forward_operation(speed);
+				Left_trigged = 0;
+				Forward_trigged = 0;
+ 858:	61 2c       	mov	r6, r1
+				if ((sensor_data_hold & 0b01111110) == 0b01111110)
+				{
+					destination = destination + 1;
+					if (destination > 7000)   // destination triggering
+					{
+						destination = 0x00;
+ 85a:	94 2c       	mov	r9, r4
+ 85c:	a5 2c       	mov	r10, r5
+			{
+				_delay_us(50);
+				sensor_data_hold = sensor_data();
+				if (sensor_data_hold & (1<<6))  // must change for 8 system
+				{
+					Left_trigged=1;
+ 85e:	b3 2c       	mov	r11, r3
+ 860:	03 c0       	rjmp	.+6      	; 0x868 <__stack+0x9>
+ 862:	cc 2e       	mov	r12, r28
+ 864:	01 c0       	rjmp	.+2      	; 0x868 <__stack+0x9>
+ 866:	7c 2e       	mov	r7, r28
+	_delay_ms(60);
+	set_speed_RL(speed);
+	
+	while(1)
+	{
+		sensor_data_hold = sensor_data();  //normally read
+ 868:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+ 86c:	18 2f       	mov	r17, r24
+		
+		// start line follow
+		if ((sensor_data_hold & (3<<3)) == (3<<3))
+ 86e:	88 71       	andi	r24, 0x18	; 24
+ 870:	88 31       	cpi	r24, 0x18	; 24
+ 872:	39 f4       	brne	.+14     	; 0x882 <__stack+0x23>
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 874:	8c e2       	ldi	r24, 0x2C	; 44
+ 876:	91 e0       	ldi	r25, 0x01	; 1
+ 878:	99 bd       	out	0x29, r25	; 41
+ 87a:	88 bd       	out	0x28, r24	; 40
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 87c:	9b bd       	out	0x2b, r25	; 43
+ 87e:	8a bd       	out	0x2a, r24	; 42
+ 880:	09 c0       	rjmp	.+18     	; 0x894 <__stack+0x35>
+		// start line follow
+		if ((sensor_data_hold & (3<<3)) == (3<<3))
+		{
+			set_speed_RL(speed);
+		}
+		else if ((sensor_data_hold & (1<<3)) == (1<<3))
+ 882:	13 ff       	sbrs	r17, 3
+ 884:	03 c0       	rjmp	.+6      	; 0x88c <__stack+0x2d>
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 886:	f9 bc       	out	0x29, r15	; 41
+ 888:	e8 bc       	out	0x28, r14	; 40
+ 88a:	04 c0       	rjmp	.+8      	; 0x894 <__stack+0x35>
+		}
+		else if ((sensor_data_hold & (1<<3)) == (1<<3))
+		{
+			set_speed_R(speed - 150);  //previously 150
+		}
+		else if ((sensor_data_hold & (1<<4)) == (1<<4))
+ 88c:	14 ff       	sbrs	r17, 4
+ 88e:	02 c0       	rjmp	.+4      	; 0x894 <__stack+0x35>
+	OCR1B = speed_R;
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 890:	fb bc       	out	0x2b, r15	; 43
+ 892:	ea bc       	out	0x2a, r14	; 42
+			set_speed_L(speed - 150);  //previously 150
+		}
+		// end line follow
+		
+		
+		if ((sensor_data_hold & 0b11110000) == 0b11110000)
+ 894:	81 2f       	mov	r24, r17
+ 896:	80 7f       	andi	r24, 0xF0	; 240
+ 898:	80 3f       	cpi	r24, 0xF0	; 240
+ 89a:	09 f0       	breq	.+2      	; 0x89e <__stack+0x3f>
+ 89c:	5d c0       	rjmp	.+186    	; 0x958 <__stack+0xf9>
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 89e:	8c e2       	ldi	r24, 0x2C	; 44
+ 8a0:	91 e0       	ldi	r25, 0x01	; 1
+ 8a2:	99 bd       	out	0x29, r25	; 41
+ 8a4:	88 bd       	out	0x28, r24	; 40
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 8a6:	9b bd       	out	0x2b, r25	; 43
+ 8a8:	8a bd       	out	0x2a, r24	; 42
+		
+		
+		if ((sensor_data_hold & 0b11110000) == 0b11110000)
+		{
+			set_speed_RL(speed);
+			destination=0x00;
+ 8aa:	c4 2d       	mov	r28, r4
+ 8ac:	d5 2d       	mov	r29, r5
+ 8ae:	16 c0       	rjmp	.+44     	; 0x8dc <__stack+0x7d>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 8b0:	85 e8       	ldi	r24, 0x85	; 133
+ 8b2:	8a 95       	dec	r24
+ 8b4:	f1 f7       	brne	.-4      	; 0x8b2 <__stack+0x53>
+ 8b6:	00 00       	nop
+			while((sensor_data_hold & (1<<6)) || (sensor_data_hold & (1<<1))) // can be changed to 8 sensor system
+			{
+				_delay_us(50);
+				sensor_data_hold = sensor_data();
+ 8b8:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+ 8bc:	18 2f       	mov	r17, r24
+				if (sensor_data_hold & (1<<1))
+ 8be:	81 fd       	sbrc	r24, 1
+				{
+					Right_trigged=1;
+ 8c0:	cb 2c       	mov	r12, r11
+				}
+				if ((sensor_data_hold & 0b01111110) == 0b01111110)
+ 8c2:	81 2f       	mov	r24, r17
+ 8c4:	8e 77       	andi	r24, 0x7E	; 126
+ 8c6:	8e 37       	cpi	r24, 0x7E	; 126
+ 8c8:	49 f4       	brne	.+18     	; 0x8dc <__stack+0x7d>
+				{
+					destination = destination + 1;
+ 8ca:	21 96       	adiw	r28, 0x01	; 1
+					if (destination > 7000)   // destination triggering
+ 8cc:	c9 35       	cpi	r28, 0x59	; 89
+ 8ce:	9b e1       	ldi	r25, 0x1B	; 27
+ 8d0:	d9 07       	cpc	r29, r25
+ 8d2:	20 f0       	brcs	.+8      	; 0x8dc <__stack+0x7d>
+					{
+						destination = 0x00;
+						stay_stop();
+ 8d4:	0e 94 61 00 	call	0xc2	; 0xc2 <stay_stop>
+				if ((sensor_data_hold & 0b01111110) == 0b01111110)
+				{
+					destination = destination + 1;
+					if (destination > 7000)   // destination triggering
+					{
+						destination = 0x00;
+ 8d8:	c9 2d       	mov	r28, r9
+ 8da:	da 2d       	mov	r29, r10
+ 8dc:	81 2f       	mov	r24, r17
+ 8de:	82 74       	andi	r24, 0x42	; 66
+		
+		if ((sensor_data_hold & 0b11110000) == 0b11110000)
+		{
+			set_speed_RL(speed);
+			destination=0x00;
+			while((sensor_data_hold & (1<<6)) || (sensor_data_hold & (1<<1))) // can be changed to 8 sensor system
+ 8e0:	39 f7       	brne	.-50     	; 0x8b0 <__stack+0x51>
+ 8e2:	cc 2d       	mov	r28, r12
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 8e4:	9f ef       	ldi	r25, 0xFF	; 255
+ 8e6:	20 e7       	ldi	r18, 0x70	; 112
+ 8e8:	82 e0       	ldi	r24, 0x02	; 2
+ 8ea:	91 50       	subi	r25, 0x01	; 1
+ 8ec:	20 40       	sbci	r18, 0x00	; 0
+ 8ee:	80 40       	sbci	r24, 0x00	; 0
+ 8f0:	e1 f7       	brne	.-8      	; 0x8ea <__stack+0x8b>
+ 8f2:	00 c0       	rjmp	.+0      	; 0x8f4 <__stack+0x95>
+ 8f4:	00 00       	nop
+					}
+				}
+				
+			}
+			_delay_ms(100);  //delay can be changed
+			sensor_data_hold = sensor_data();
+ 8f6:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+			if ((sensor_data_hold & 0b01111110))
+ 8fa:	8e 77       	andi	r24, 0x7E	; 126
+ 8fc:	09 f0       	breq	.+2      	; 0x900 <__stack+0xa1>
+ 8fe:	a0 c0       	rjmp	.+320    	; 0xa40 <__stack+0x1e1>
+			{
+				Forward_trigged = 1;
+			}
+			//decide from probable 4 way
+			if ((Right_trigged == 0) && (Forward_trigged == 0))
+ 900:	c1 10       	cpse	r12, r1
+ 902:	13 c0       	rjmp	.+38     	; 0x92a <__stack+0xcb>
+ 904:	81 10       	cpse	r8, r1
+ 906:	06 c0       	rjmp	.+12     	; 0x914 <__stack+0xb5>
+			{
+				evaluate_direction(1,speed);
+ 908:	6c e2       	ldi	r22, 0x2C	; 44
+ 90a:	71 e0       	ldi	r23, 0x01	; 1
+ 90c:	83 2d       	mov	r24, r3
+ 90e:	0e 94 64 02 	call	0x4c8	; 0x4c8 <evaluate_direction>
+				//left_operation(speed);
+				Right_trigged = 0;
+				Forward_trigged = 0;
+ 912:	aa cf       	rjmp	.-172    	; 0x868 <__stack+0x9>
+			}
+			else if ((Right_trigged == 0) && (Forward_trigged == 1))
+ 914:	91 e0       	ldi	r25, 0x01	; 1
+ 916:	89 12       	cpse	r8, r25
+ 918:	a7 cf       	rjmp	.-178    	; 0x868 <__stack+0x9>
+			{
+				evaluate_direction(4,speed);
+ 91a:	6c e2       	ldi	r22, 0x2C	; 44
+ 91c:	71 e0       	ldi	r23, 0x01	; 1
+ 91e:	84 e0       	ldi	r24, 0x04	; 4
+ 920:	0e 94 64 02 	call	0x4c8	; 0x4c8 <evaluate_direction>
+				//left_forward_operation(speed);
+				Right_trigged = 0;
+				Forward_trigged = 0;
+ 924:	86 2c       	mov	r8, r6
+			}
+			else if ((Right_trigged == 0) && (Forward_trigged == 1))
+			{
+				evaluate_direction(4,speed);
+				//left_forward_operation(speed);
+				Right_trigged = 0;
+ 926:	c6 2c       	mov	r12, r6
+				Forward_trigged = 0;
+ 928:	9f cf       	rjmp	.-194    	; 0x868 <__stack+0x9>
+			}
+			else if ((Right_trigged == 1) && (Forward_trigged == 0))
+ 92a:	c1 30       	cpi	r28, 0x01	; 1
+ 92c:	09 f0       	breq	.+2      	; 0x930 <__stack+0xd1>
+ 92e:	9c cf       	rjmp	.-200    	; 0x868 <__stack+0x9>
+ 930:	81 10       	cpse	r8, r1
+ 932:	07 c0       	rjmp	.+14     	; 0x942 <__stack+0xe3>
+			{
+				evaluate_direction(3,speed);
+ 934:	6c e2       	ldi	r22, 0x2C	; 44
+ 936:	71 e0       	ldi	r23, 0x01	; 1
+ 938:	83 e0       	ldi	r24, 0x03	; 3
+ 93a:	0e 94 64 02 	call	0x4c8	; 0x4c8 <evaluate_direction>
+				//left_right_operation(speed);
+				Right_trigged = 0;
+ 93e:	c6 2c       	mov	r12, r6
+				Forward_trigged = 0;
+ 940:	93 cf       	rjmp	.-218    	; 0x868 <__stack+0x9>
+			}
+			else if ((Right_trigged == 1) && (Forward_trigged == 1))
+ 942:	21 e0       	ldi	r18, 0x01	; 1
+ 944:	82 12       	cpse	r8, r18
+ 946:	8d cf       	rjmp	.-230    	; 0x862 <__stack+0x3>
+			{
+				evaluate_direction(6,speed);
+ 948:	6c e2       	ldi	r22, 0x2C	; 44
+ 94a:	71 e0       	ldi	r23, 0x01	; 1
+ 94c:	86 e0       	ldi	r24, 0x06	; 6
+ 94e:	0e 94 64 02 	call	0x4c8	; 0x4c8 <evaluate_direction>
+				//left_right_forward_operation(speed);
+				Right_trigged = 0;
+				Forward_trigged = 0;
+ 952:	86 2c       	mov	r8, r6
+			}
+			else if ((Right_trigged == 1) && (Forward_trigged == 1))
+			{
+				evaluate_direction(6,speed);
+				//left_right_forward_operation(speed);
+				Right_trigged = 0;
+ 954:	c6 2c       	mov	r12, r6
+ 956:	88 cf       	rjmp	.-240    	; 0x868 <__stack+0x9>
+				Forward_trigged = 0;
+			}
+		}
+		else if ((sensor_data_hold & 0b00001111) == 0b00001111)
+ 958:	81 2f       	mov	r24, r17
+ 95a:	8f 70       	andi	r24, 0x0F	; 15
+ 95c:	8f 30       	cpi	r24, 0x0F	; 15
+ 95e:	09 f0       	breq	.+2      	; 0x962 <__stack+0x103>
+ 960:	5d c0       	rjmp	.+186    	; 0xa1c <__stack+0x1bd>
+//  Functions are started from here  ***************************************************************************
+//**************************************************************************************************************
+
+void set_speed_R(uint16_t speed_R)
+{
+	OCR1B = speed_R;
+ 962:	8c e2       	ldi	r24, 0x2C	; 44
+ 964:	91 e0       	ldi	r25, 0x01	; 1
+ 966:	99 bd       	out	0x29, r25	; 41
+ 968:	88 bd       	out	0x28, r24	; 40
+}
+
+void set_speed_L(uint16_t speed_L)
+{
+	OCR1A = speed_L;
+ 96a:	9b bd       	out	0x2b, r25	; 43
+ 96c:	8a bd       	out	0x2a, r24	; 42
+			}
+		}
+		else if ((sensor_data_hold & 0b00001111) == 0b00001111)
+		{
+			set_speed_RL(speed);
+			destination = 0x00;
+ 96e:	c4 2d       	mov	r28, r4
+ 970:	d5 2d       	mov	r29, r5
+ 972:	16 c0       	rjmp	.+44     	; 0x9a0 <__stack+0x141>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 974:	85 e8       	ldi	r24, 0x85	; 133
+ 976:	8a 95       	dec	r24
+ 978:	f1 f7       	brne	.-4      	; 0x976 <__stack+0x117>
+ 97a:	00 00       	nop
+			while((sensor_data_hold & (1<<6)) || (sensor_data_hold & (1<<1))) // can be changed to 8 sensor system
+			{
+				_delay_us(50);
+				sensor_data_hold = sensor_data();
+ 97c:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+ 980:	18 2f       	mov	r17, r24
+				if (sensor_data_hold & (1<<6))  // must change for 8 system
+ 982:	86 fd       	sbrc	r24, 6
+				{
+					Left_trigged=1;
+ 984:	7b 2c       	mov	r7, r11
+				}
+				if ((sensor_data_hold & 0b01111110) == 0b01111110)
+ 986:	81 2f       	mov	r24, r17
+ 988:	8e 77       	andi	r24, 0x7E	; 126
+ 98a:	8e 37       	cpi	r24, 0x7E	; 126
+ 98c:	49 f4       	brne	.+18     	; 0x9a0 <__stack+0x141>
+				{
+					destination = destination + 1;
+ 98e:	21 96       	adiw	r28, 0x01	; 1
+					if (destination > 7000)   // destination triggering
+ 990:	c9 35       	cpi	r28, 0x59	; 89
+ 992:	9b e1       	ldi	r25, 0x1B	; 27
+ 994:	d9 07       	cpc	r29, r25
+ 996:	20 f0       	brcs	.+8      	; 0x9a0 <__stack+0x141>
+					{
+						destination = 0x00;
+						stay_stop();
+ 998:	0e 94 61 00 	call	0xc2	; 0xc2 <stay_stop>
+				if ((sensor_data_hold & 0b01111110) == 0b01111110)
+				{
+					destination = destination + 1;
+					if (destination > 7000)   // destination triggering
+					{
+						destination = 0x00;
+ 99c:	c9 2d       	mov	r28, r9
+ 99e:	da 2d       	mov	r29, r10
+ 9a0:	81 2f       	mov	r24, r17
+ 9a2:	82 74       	andi	r24, 0x42	; 66
+		}
+		else if ((sensor_data_hold & 0b00001111) == 0b00001111)
+		{
+			set_speed_RL(speed);
+			destination = 0x00;
+			while((sensor_data_hold & (1<<6)) || (sensor_data_hold & (1<<1))) // can be changed to 8 sensor system
+ 9a4:	39 f7       	brne	.-50     	; 0x974 <__stack+0x115>
+ 9a6:	c7 2d       	mov	r28, r7
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 9a8:	9f ef       	ldi	r25, 0xFF	; 255
+ 9aa:	20 e7       	ldi	r18, 0x70	; 112
+ 9ac:	82 e0       	ldi	r24, 0x02	; 2
+ 9ae:	91 50       	subi	r25, 0x01	; 1
+ 9b0:	20 40       	sbci	r18, 0x00	; 0
+ 9b2:	80 40       	sbci	r24, 0x00	; 0
+ 9b4:	e1 f7       	brne	.-8      	; 0x9ae <__stack+0x14f>
+ 9b6:	00 c0       	rjmp	.+0      	; 0x9b8 <__stack+0x159>
+ 9b8:	00 00       	nop
+						//goto start_test_operation;
+					}
+				}
+			}
+			_delay_ms(100);  //delay can be changed
+			sensor_data_hold = sensor_data();
+ 9ba:	0e 94 66 00 	call	0xcc	; 0xcc <sensor_data>
+			if ((sensor_data_hold & 0b01111110))
+ 9be:	8e 77       	andi	r24, 0x7E	; 126
+ 9c0:	09 f0       	breq	.+2      	; 0x9c4 <__stack+0x165>
+ 9c2:	42 c0       	rjmp	.+132    	; 0xa48 <__stack+0x1e9>
+			{
+				Forward_trigged = 1;
+			}
+			//decide from probable 4 way
+			if ((Left_trigged == 0) && (Forward_trigged == 0))
+ 9c4:	71 10       	cpse	r7, r1
+ 9c6:	13 c0       	rjmp	.+38     	; 0x9ee <__stack+0x18f>
+ 9c8:	81 10       	cpse	r8, r1
+ 9ca:	06 c0       	rjmp	.+12     	; 0x9d8 <__stack+0x179>
+			{
+				evaluate_direction(2,speed);
+ 9cc:	6c e2       	ldi	r22, 0x2C	; 44
+ 9ce:	71 e0       	ldi	r23, 0x01	; 1
+ 9d0:	82 e0       	ldi	r24, 0x02	; 2
+ 9d2:	0e 94 64 02 	call	0x4c8	; 0x4c8 <evaluate_direction>
+				//right_operation(speed);
+				Left_trigged = 0;
+				Forward_trigged = 0;
+ 9d6:	48 cf       	rjmp	.-368    	; 0x868 <__stack+0x9>
+			}
+			else if ((Left_trigged == 0) && (Forward_trigged == 1))  // this logic is fixed
+ 9d8:	91 e0       	ldi	r25, 0x01	; 1
+ 9da:	89 12       	cpse	r8, r25
+ 9dc:	45 cf       	rjmp	.-374    	; 0x868 <__stack+0x9>
+			{
+				evaluate_direction(5,speed);
+ 9de:	6c e2       	ldi	r22, 0x2C	; 44
+ 9e0:	71 e0       	ldi	r23, 0x01	; 1
+ 9e2:	85 e0       	ldi	r24, 0x05	; 5
+ 9e4:	0e 94 64 02 	call	0x4c8	; 0x4c8 <evaluate_direction>
+				//right_forward_operation(speed);
+				Left_trigged = 0;
+				Forward_trigged = 0;
+ 9e8:	86 2c       	mov	r8, r6
+			}
+			else if ((Left_trigged == 0) && (Forward_trigged == 1))  // this logic is fixed
+			{
+				evaluate_direction(5,speed);
+				//right_forward_operation(speed);
+				Left_trigged = 0;
+ 9ea:	76 2c       	mov	r7, r6
+				Forward_trigged = 0;
+ 9ec:	3d cf       	rjmp	.-390    	; 0x868 <__stack+0x9>
+			}
+			else if ((Left_trigged == 1) && (Forward_trigged == 0))
+ 9ee:	c1 30       	cpi	r28, 0x01	; 1
+ 9f0:	09 f0       	breq	.+2      	; 0x9f4 <__stack+0x195>
+ 9f2:	3a cf       	rjmp	.-396    	; 0x868 <__stack+0x9>
+ 9f4:	81 10       	cpse	r8, r1
+ 9f6:	07 c0       	rjmp	.+14     	; 0xa06 <__stack+0x1a7>
+			{
+				evaluate_direction(3,speed);
+ 9f8:	6c e2       	ldi	r22, 0x2C	; 44
+ 9fa:	71 e0       	ldi	r23, 0x01	; 1
+ 9fc:	83 e0       	ldi	r24, 0x03	; 3
+ 9fe:	0e 94 64 02 	call	0x4c8	; 0x4c8 <evaluate_direction>
+				//left_right_operation(speed);
+				Left_trigged = 0;
+ a02:	76 2c       	mov	r7, r6
+				Forward_trigged = 0;
+ a04:	31 cf       	rjmp	.-414    	; 0x868 <__stack+0x9>
+			}
+			else if ((Left_trigged == 1) && (Forward_trigged == 1))
+ a06:	21 e0       	ldi	r18, 0x01	; 1
+ a08:	82 12       	cpse	r8, r18
+ a0a:	2d cf       	rjmp	.-422    	; 0x866 <__stack+0x7>
+			{
+				evaluate_direction(6,speed);
+ a0c:	6c e2       	ldi	r22, 0x2C	; 44
+ a0e:	71 e0       	ldi	r23, 0x01	; 1
+ a10:	86 e0       	ldi	r24, 0x06	; 6
+ a12:	0e 94 64 02 	call	0x4c8	; 0x4c8 <evaluate_direction>
+				//left_right_forward_operation(speed);
+				Left_trigged = 0;
+				Forward_trigged = 0;
+ a16:	86 2c       	mov	r8, r6
+			}
+			else if ((Left_trigged == 1) && (Forward_trigged == 1))
+			{
+				evaluate_direction(6,speed);
+				//left_right_forward_operation(speed);
+				Left_trigged = 0;
+ a18:	76 2c       	mov	r7, r6
+ a1a:	26 cf       	rjmp	.-436    	; 0x868 <__stack+0x9>
+				Forward_trigged = 0;
+			}
+		}
+		else if ((sensor_data_hold & 0b01111110) == 0x00)
+ a1c:	81 2f       	mov	r24, r17
+ a1e:	8e 77       	andi	r24, 0x7E	; 126
+ a20:	09 f0       	breq	.+2      	; 0xa24 <__stack+0x1c5>
+ a22:	22 cf       	rjmp	.-444    	; 0x868 <__stack+0x9>
+		{
+			evaluate_direction(7,speed);
+ a24:	6c e2       	ldi	r22, 0x2C	; 44
+ a26:	71 e0       	ldi	r23, 0x01	; 1
+ a28:	87 e0       	ldi	r24, 0x07	; 7
+ a2a:	0e 94 64 02 	call	0x4c8	; 0x4c8 <evaluate_direction>
+ a2e:	1c cf       	rjmp	.-456    	; 0x868 <__stack+0x9>
+			{
+				left_operation(speed);
+				Right_trigged = 0;
+				Forward_trigged = 0;
+			}
+			else if ((Right_trigged == 0) && (Forward_trigged == 1))
+ a30:	cc 20       	and	r12, r12
+ a32:	09 f4       	brne	.+2      	; 0xa36 <__stack+0x1d7>
+ a34:	37 ce       	rjmp	.-914    	; 0x6a4 <main+0x18a>
+ a36:	0b c0       	rjmp	.+22     	; 0xa4e <__stack+0x1ef>
+			{
+				right_operation(speed);
+				Left_trigged = 0;
+				Forward_trigged = 0;
+			}
+			else if ((Left_trigged == 0) && (Forward_trigged == 1))
+ a38:	77 20       	and	r7, r7
+ a3a:	09 f4       	brne	.+2      	; 0xa3e <__stack+0x1df>
+ a3c:	8b ce       	rjmp	.-746    	; 0x754 <main+0x23a>
+ a3e:	0c c0       	rjmp	.+24     	; 0xa58 <__stack+0x1f9>
+				evaluate_direction(1,speed);
+				//left_operation(speed);
+				Right_trigged = 0;
+				Forward_trigged = 0;
+			}
+			else if ((Right_trigged == 0) && (Forward_trigged == 1))
+ a40:	cc 20       	and	r12, r12
+ a42:	09 f4       	brne	.+2      	; 0xa46 <__stack+0x1e7>
+ a44:	6a cf       	rjmp	.-300    	; 0x91a <__stack+0xbb>
+ a46:	0d c0       	rjmp	.+26     	; 0xa62 <__stack+0x203>
+				evaluate_direction(2,speed);
+				//right_operation(speed);
+				Left_trigged = 0;
+				Forward_trigged = 0;
+			}
+			else if ((Left_trigged == 0) && (Forward_trigged == 1))  // this logic is fixed
+ a48:	77 20       	and	r7, r7
+ a4a:	49 f2       	breq	.-110    	; 0x9de <__stack+0x17f>
+ a4c:	0f c0       	rjmp	.+30     	; 0xa6c <__stack+0x20d>
+			{
+				left_forward_operation(speed);
+				Right_trigged = 0;
+				Forward_trigged = 0;
+			}
+			else if ((Right_trigged == 1) && (Forward_trigged == 0))
+ a4e:	11 30       	cpi	r17, 0x01	; 1
+ a50:	09 f4       	brne	.+2      	; 0xa54 <__stack+0x1f5>
+ a52:	3b ce       	rjmp	.-906    	; 0x6ca <main+0x1b0>
+			}
+			_delay_ms(100);  //delay can be changed
+			sensor_data_hold = sensor_data();
+			if ((sensor_data_hold & 0b01111110))
+			{
+				Forward_trigged = 1;
+ a54:	8b 2c       	mov	r8, r11
+ a56:	ba cd       	rjmp	.-1164   	; 0x5cc <main+0xb2>
+			{
+				right_forward_operation(speed);
+				Left_trigged = 0;
+				Forward_trigged = 0;
+			}
+			else if ((Left_trigged == 1) && (Forward_trigged == 0))
+ a58:	11 30       	cpi	r17, 0x01	; 1
+ a5a:	09 f4       	brne	.+2      	; 0xa5e <__stack+0x1ff>
+ a5c:	8e ce       	rjmp	.-740    	; 0x77a <main+0x260>
+			}
+			_delay_ms(100);  //delay can be changed
+			sensor_data_hold = sensor_data();
+			if ((sensor_data_hold & 0b01111110))
+			{
+				Forward_trigged = 1;
+ a5e:	8b 2c       	mov	r8, r11
+ a60:	b5 cd       	rjmp	.-1174   	; 0x5cc <main+0xb2>
+				evaluate_direction(4,speed);
+				//left_forward_operation(speed);
+				Right_trigged = 0;
+				Forward_trigged = 0;
+			}
+			else if ((Right_trigged == 1) && (Forward_trigged == 0))
+ a62:	c1 30       	cpi	r28, 0x01	; 1
+ a64:	09 f4       	brne	.+2      	; 0xa68 <__stack+0x209>
+ a66:	70 cf       	rjmp	.-288    	; 0x948 <__stack+0xe9>
+			}
+			_delay_ms(100);  //delay can be changed
+			sensor_data_hold = sensor_data();
+			if ((sensor_data_hold & 0b01111110))
+			{
+				Forward_trigged = 1;
+ a68:	83 2c       	mov	r8, r3
+ a6a:	fe ce       	rjmp	.-516    	; 0x868 <__stack+0x9>
+				evaluate_direction(5,speed);
+				//right_forward_operation(speed);
+				Left_trigged = 0;
+				Forward_trigged = 0;
+			}
+			else if ((Left_trigged == 1) && (Forward_trigged == 0))
+ a6c:	c1 30       	cpi	r28, 0x01	; 1
+ a6e:	71 f2       	breq	.-100    	; 0xa0c <__stack+0x1ad>
+			}
+			_delay_ms(100);  //delay can be changed
+			sensor_data_hold = sensor_data();
+			if ((sensor_data_hold & 0b01111110))
+			{
+				Forward_trigged = 1;
+ a70:	83 2c       	mov	r8, r3
+ a72:	fa ce       	rjmp	.-524    	; 0x868 <__stack+0x9>
+
+00000a74 <_exit>:
+ a74:	f8 94       	cli
+
+00000a76 <__stop_program>:
+ a76:	ff cf       	rjmp	.-2      	; 0xa76 <__stop_program>

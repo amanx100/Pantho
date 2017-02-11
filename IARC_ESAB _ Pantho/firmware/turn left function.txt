@@ -1,0 +1,19 @@
+void turn_left(uint16_t speed)
+{
+	//_delay_ms(100);
+	stay_stop();
+	//set_speed_R(speed-100);
+	//set_speed_L(speed);
+	_delay_ms(100);
+	//go_backward();
+	//while((sensor_data() & (7<<4)) != (7<<4));
+	//_delay_ms(200);
+	left_rotate();
+	while((sensor_data() & (3<<5)) != (3<<5));
+	while((sensor_data() & (3<<4)) != (3<<4));
+	//while(sensor_data() != (3<<3));
+	stay_stop();
+	_delay_ms(100);
+	//set_speed_RL(speed);
+	go_forward();
+}
